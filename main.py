@@ -15,8 +15,7 @@ load_dotenv()
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--video", help="Path to the input tutorial video file",
-        #required=True 
+        "--video", required=True, help="Path to the input tutorial video file"
     )
     parser.add_argument(
         "--model", default=os.environ.get("GEMINI_MODEL", "gemini-2.5-pro")
@@ -48,9 +47,7 @@ def main() -> None:
         max_output_tokens=args.max_output_tokens,
         timeout_seconds=args.timeout_seconds,
     )
-    # print(final_prompt)
-
-    print("TODO!!!!!!!!!!!!! Pass in pdf text with links and enabled url context.")
+    print(final_prompt)
 
 
 if __name__ == "__main__":
