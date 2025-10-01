@@ -1,0 +1,62 @@
+ADMIN USERS
+Guide 1 - Welcome + Account SetUp: Admins
+● Trigger: On the first login for new Admin users.
+● Content: A brief welcome message highlighting how Overproof will help them
+achieve their goals and guided set-up for adding distribution, products and users.
+
+○ Welcome to Overproof!
+○ We're so excited you've decided to partner with us. You'll now be able to easily
+track results and drive execution for your team. Choose how you'd like to get
+started.
+■ User gets two button options
+● “Guided Setup” button: Proceeds to next step
+● “Review Main Features” button: Skips setup and takes user to
+Guide 2
+
+● Guided Setup
+○ Setting up your account (Step 1 of 4)
+○ Get your team selling sooner by completing your account setup today. Take a
+few minutes to add distribution, products and users.
+■ User gets two button options
+● “Next” button: Proceeds to next step
+● “Back” button: Back to Welcome message in case they want to
+skip to Guide 2
+○ Add Distribution (Step 2 of 4)
+○ Select the distributors you work with and upload contacts. As your team logs
+commitments, we’ll automatically notify distributor reps selected to support
+the fulfillment of orders!
+■ User gets three button options
+● “View Step-by-Step”: Opens new tab to Scribe Guide Adding
+Distributors (https://scribehow.com/viewer/How_to_add_State_Distributors__oYz6JdgHQTeHg9MYMJOK7g)
+● “Next” button: Proceeds to next step
+● “Back” button: Back to previous step
+
+○ Manage your portfolio (Step 3 of 4)
+○ Add all your brands, products and SKUs. This will allow you to assign a
+portfolio to your team and enables Overproof to track your depletions by
+product.
+■ User gets three button options
+● “View Step-by-Step”: Opens new tab to Scribe Guide Adding
+Brands/Products/SKUs/Competitors (https://scribehow.com/viewer/How_to_Add_New_Products__W-IFTYHQTxaRyudUNsHeQA)
+● “Next” button: Proceeds to next step
+● “Back” button: Back to previous step
+
+○ Add Users (Step 4 of 4)
+○ As an Admin User, this is where you’ll be able to:
+○ -Add new users
+○ -Assign products, account sets and goals to users
+○ -Deactivate users
+■ User gets three button options
+● “View Step-by-Step”: Opens new tab to Scribe Guide Managing
+Users (https://scribehow.com/viewer/How_to_add_a_New_User__ssm0t_6cSvSAdMZaOOuYPQ)
+● “Next” button: Proceeds to next step
+● “Back” button: Back to previous step
+
+○ You’re all set!
+
+○ Now that you’ve learned how to add your distribution, products and users,
+you’re ready to check out how to define your target accounts, set KPIs for your
+team and review our dashboards.
+■ User gets two button options
+● “Review Main Features” button: Proceeds to Guide 2
+● “Back” button: Back to previous step
