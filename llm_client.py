@@ -8,8 +8,8 @@ import time
 from dataclasses import dataclass
 from typing import Optional
 
-import google.generativeai as genai
-
+from google import genai
+from google.genai.types import Tool, GenerateContentConfig, HttpOptions, UrlContext
 
 @dataclass(frozen=True)
 class GeminiConfig:
@@ -24,26 +24,44 @@ class GeminiClient:
     def __init__(self, cfg: GeminiConfig) -> None:
         if not cfg.api_key:
             raise ValueError("Missing GOOGLE_API_KEY")
-        genai.configure(api_key=cfg.api_key)
+        self.client = genai.Client(http_options=HttpOptions(api_version="v1"))
         self._cfg = cfg
-        self._model = genai.GenerativeModel(
-            model_name=cfg.model,
-            generation_config={
-                "temperature": cfg.temperature,
-                "max_output_tokens": cfg.max_output_tokens,
-                "response_mime_type": "text/plain",
-            },
-        )
+        # self._model = genai.GenerativeModel(
+        #     model_name=cfg.model,
+        #     generation_config={
+        #         "temperature": cfg.temperature,
+        #         "max_output_tokens": cfg.max_output_tokens,
+        #         "response_mime_type": "text/plain",
+        #     },
+        # )
 
     def generate_from_video(self, video_path: str, prompt: str) -> str:
-        self._validate_video_path(video_path)
-        uploaded = self._upload(video_path)
-        self._wait_for_active(uploaded)
-        response = self._model.generate_content([prompt, uploaded])
-        text = getattr(response, "text", None)
-        if not text or not text.strip():
-            raise RuntimeError("Empty response from model")
-        return text.strip()
+        # No video_path given
+        if video_path is None:
+            # Generate with just the text prompt, no video. Enable it to use url context.
+            # url_context_tool = Tool(
+            #     url_context=UrlContext()
+            # )
+            tools = []
+            tools.append(Tool(url_context=UrlContext()))
+            response = self.client.models.generate_content(
+                model=self._cfg.model,
+                contents=prompt,
+                config = GenerateContentConfig(
+                    tools = tools,
+                ),
+                # tools = [url_context_tool],
+            )
+
+            # print(response)
+            # text = getattr(response, "text", None)
+            # if not text or not text.strip():
+            #     raise RuntimeError("Empty response from model")
+            # return text.strip()
+
+        print("Attempting to use video input. Currently disabled.")
+        # TODO
+    
 
     def _validate_video_path(self, path: str) -> None:
         if not os.path.isfile(path):
