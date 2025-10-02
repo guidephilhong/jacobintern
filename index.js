@@ -1,27 +1,46 @@
-import { GoogleGenAI } from '@google/genai';
+import {
+  GoogleGenAI,
+} from "@google/genai";
 import * as dotenv from 'dotenv';
 dotenv.config();
 import fs from 'fs';
+
+const guideFile = '';
+const videoFile = 'https://youtu.be/dqK-L0Oiimg';
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GOOGLE_API_KEY,
 });
 
-const guide = fs.readFileSync('inputGuide.txt', 'utf-8');
+// Read guide file only if guideFile is not empty
+let guide = '';
+let inputtedGuide = false;
+if (guideFile && guideFile.trim() !== '') {
+  guide = fs.readFileSync(guideFile, 'utf-8');
+  inputtedGuide = true;
+}
 
-const TASK_RECORDER_PROMPT =
-`You are a task recorder, your job is to convert a text-based guide with links to detailed instructions and possibly an additional video tutorial into
-structured HTML outputs for use in AI agents. Please include edge cases
-where applicable, and include the instruction to ask the user to clarify
-the current state of the website if needed. Remember when creating the steps
-to search through the provided links for more information about the task.
+// Check if a video guide is provided
+let inputtedVideoGuide = videoFile && videoFile.trim() !== '';
 
-Your output must be only the <task> XML block with steps and nothing
-else. However, you are free to include multiple <task> blocks if a video 
-includes multiple diffrent tasks. Do not include explanations, markdown, notes, or reasoning.
+// Build the prompt using string concatenation to avoid template literal issues with file content
+let TASK_RECORDER_PROMPT = "You are a task recorder, your job is to convert a ";
+if (inputtedGuide) TASK_RECORDER_PROMPT += "text-based guide with links";
+if (inputtedGuide && inputtedVideoGuide) TASK_RECORDER_PROMPT += " and a ";
+if (inputtedVideoGuide) TASK_RECORDER_PROMPT += "video guide";
+TASK_RECORDER_PROMPT += "into detailed instructions in the form of structured HTML outputs for use in AI agents. Please include edge cases where applicable, and include the instruction to ask the user to clarify the current state of the website if needed. Remember when creating the steps to search through the provided links for more information about the task.";
+TASK_RECORDER_PROMPT += "\n\n"; 
+TASK_RECORDER_PROMPT += "Your output must be only the <task> XML block with steps and nothing else. However, you are free to include multiple <task> blocks if a video  includes multiple diffrent tasks. Do not include explanations, markdown, notes, or reasoning.";
 
-Here is your guide:
-${guide}
+if (inputtedGuide) {
+  TASK_RECORDER_PROMPT += `\n\nHere is your text-based guide:\n${guide}`;
+}
+
+if (inputtedVideoGuide) {
+  TASK_RECORDER_PROMPT += `\n\nYour video tutorial is attached to this prompt.`;
+}
+
+TASK_RECORDER_PROMPT += `
 
 The following is the rest of your instructions.
 
@@ -78,8 +97,9 @@ Here is a completed example for a different website:
     <instruction val="Click Send Certificate or fax the document." />
   </step>
 
-</task>
-`.trim()
+</task>`;
+
+TASK_RECORDER_PROMPT = TASK_RECORDER_PROMPT.trim();
 
 
 function buildGuideAISystemPrompt(html) {
@@ -116,11 +136,31 @@ function buildGuideAISystemPrompt(html) {
 }
 
 async function run() {
+  let tools = []
+  
+  // Add urlContext if a text-based guide is provided
+  if (inputtedGuide) {
+    tools.push({urlContext: {url: guide}});
+  }
+
+  let contents = TASK_RECORDER_PROMPT;
+
+  if (inputtedVideoGuide) {
+    contents = [
+      contents,
+      {
+        fileData: {
+          fileUri: videoFile,
+        }
+      }
+    ]
+  }
+
   const response = await ai.models.generateContent({
     model: 'gemini-2.5-pro',
-    contents: TASK_RECORDER_PROMPT,
+    contents: contents,
     config: {
-      tools: [{urlContext: {}}],
+      tools: tools,
     },
   });
 

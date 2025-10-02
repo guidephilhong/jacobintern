@@ -21,168 +21,87 @@ Never stop in the middle of a response, finish your response first, don't stop i
 WORKFLOW — The following is for your context. Utilize the structured format as well as screenshots as they come in to explain to the user the step-by-step instructions while still sounding human.
 
 ```
-<task name="Create a Goal Set">
+<task name="Set Up Carrier Access in Momentum">
   <step step_num="1">
-    <instruction val="First, ask the user for the name and a brief description of the goal set they want to create."/>
-    <instruction val="Navigate to the Goal Sets page."/>
-    <ui_action val="Click Overproof Logo icon in top navigation"/>
-    <ui_action val="Click 'Goal Sets' in dropdown menu"/>
+    <instruction val="First, we need to ensure your carrier access is set up. Do you have direct appointments with carriers you want to quote with?" />
+    <instruction val="If yes, proceed to the next step to link your credentials." />
+    <instruction val="If no, skip to step 3 to enroll in the Momentum Insurance Network." />
+  </step>
+
+  <step step_num="2">
+    <instruction val="To link your direct carrier appointments, navigate to the Settings page." />
+    <ui_action val="Click 'Settings' in the main navigation menu." />
+    <instruction val="Under the 'Direct Appointments' section on the left, select the carrier you wish to connect." />
+    <ui_action val="//div[contains(text(), 'Direct Appointments')]/following-sibling::ul/li/a[text()='[Carrier Name]']" />
+    <instruction val="Enter your user credentials for that carrier, such as User Name, Password, and any other required information." />
+    <instruction val="Click the 'Save' button." />
+    <instruction val="Repeat this process for all carriers you have direct appointments with. Once finished, you can proceed to quoting." />
+  </step>
+
+  <step step_num="3">
+    <instruction val="To gain access to carriers without a direct appointment, you can enroll in a wholesale network. Navigate to the Settings page." />
+    <ui_action val="Click 'Settings' in the main navigation menu." />
+    <instruction val="Under the 'Wholesale Networks' section on the left, select a network provider (e.g., NowCerts, btis)." />
+    <ui_action val="//div[contains(text(), 'Wholesale Networks')]/following-sibling::ul/li/a" />
+    <instruction val="Fill out the complete enrollment form with your agency's information, including Agency Information, Agent Information, Mailing Address, License Information, and Principal Information." />
+    <instruction val="Upload the required documents, such as a completed W-9 and State Insurance Licenses." />
+    <instruction val="Click the 'Save' button to submit your enrollment. After approval, you will be able to quote through the network." />
+  </step>
+</task>
+<task name="Get a Worker's Compensation Quote">
+  <step step_num="1">
+    <instruction val="Please confirm if you are on the Insured's details page for the client you want to get a quote for." />
+    <instruction val="If not, please navigate to the correct insured's page first. You can use the main search bar or the 'Insureds' link in the left-hand menu." />
   </step>
   <step step_num="2">
-    <instruction val="Create the new, empty Goal Set."/>
-    <ui_action val="Click button with text 'Add a Goal Set'"/>
-    <instruction val="Enter the user-provided name and description into the corresponding fields."/>
-    <ui_action val="Fill 'Name' text input"/>
-    <ui_action val="Fill 'Description' text input"/>
-    <ui_action val="Click button with text 'Save Goal Set'"/>
-    <ui_action val="Click button with text 'Ok' in confirmation modal"/>
+    <instruction val="Click the green 'RATE' button located in the top-right corner of the insured's detail page." />
+    <ui_action val="button with text 'RATE'" />
+    <instruction val="From the dropdown menu that appears, select 'Worker Compensation'." />
+    <ui_action val="Click 'Worker Compensation' in the dropdown menu." />
   </step>
   <step step_num="3">
-    <instruction val="Ask the user which KPIs they want to track, specifying they can be 'Activity Goals' (logged by the team in the app) or 'Performance Goals' (tracked from sales data)."/>
-    <instruction val="For each Activity Goal requested:"/>
-    <ui_action val="Click button with text 'Add Activity Goal'"/>
-    <instruction val="Ask user for the activity type (e.g., account visits, menu placements), a name for the goal, the frequency (e.g., Weekly, Monthly), and the target number."/>
-    <ui_action val="Select from 'Select Activity' dropdown"/>
-    <ui_action val="Fill 'Name' text input"/>
-    <ui_action val="Select from 'Select Frequency' dropdown"/>
-    <ui_action val="Fill 'integer' input for target number"/>
-    <ui_action val="Click button with text 'Save Goal'"/>
-    <ui_action val="Click button with text 'Ok' in confirmation modal"/>
+    <instruction val="You are now in the Momentum Rater. First, provide the NAICS code for the business." />
+    <ui_action val="input[placeholder='Start typing NAICS description']" />
+    <instruction val="If you don't know the code, click the 'I don't know' link to search by business description." />
+    <ui_action val="a:contains('I don\'t know')" />
+    <instruction val="Next, select the carriers you want to get a quote from under the 'Preferred Providers' section. You can select from 'Direct Appointment' or 'Alternate Providers'." />
+    <ui_action val="checkbox next to provider name" />
+    <instruction val="Click the 'Start' button at the bottom right." />
+    <ui_action val="button:contains('Start')" />
   </step>
   <step step_num="4">
-    <instruction val="For each Performance Goal requested:"/>
-    <ui_action val="Click button with text 'Add Performance Goal'"/>
-    <instruction val="Ask user for the performance metric (e.g., accounts sold, volume), a name for the goal, the frequency, and the target number."/>
-    <ui_action val="Select from 'Select Performance' dropdown"/>
-    <ui_action val="Fill 'Name' text input"/>
-    <ui_action val="Select from 'Select Frequency' dropdown"/>
-    <ui_action val="Fill 'integer' input for target number"/>
-    <ui_action val="Click button with text 'Save Goal'"/>
-    <ui_action val="Click button with text 'Ok' in confirmation modal"/>
+    <instruction val="Complete the underwriting questions. Fill in all required fields on the 'General Questions' tab." />
+    <ui_action val="input[name='managementExperience']" />
+    <ui_action val="select[name='ownerTitle']" />
+    <ui_action val="input[name='numberOfOwners']" />
+    <instruction val="Click 'Next' to proceed through the sections (e.g., 'Industry Code', 'Locations')." />
+    <ui_action val="button:contains('Next')" />
+    <instruction val="Continue filling out all required information on each page until you reach the final step." />
   </step>
   <step step_num="5">
-    <instruction val="Once the user confirms all goals have been added, save the set."/>
-    <ui_action val="Click button with text 'Update Goal Set'"/>
-    <ui_action val="Click button with text 'Ok' in confirmation modal"/>
+    <instruction val="Review the quotes returned by the carriers. The results will be displayed on the 'Quotes' page." />
+    <instruction val="Note: Some carriers may return a 'Declined' status due to underwriting rules or technical issues. If the reason is technical, you may try again later." />
+    <ui_action val="div containing text 'Declined'" />
   </step>
   <step step_num="6">
-    <instruction val="Ask the user which team member this Goal Set should be assigned to."/>
-    <instruction val="If the user is not found, ask them to add the user first and restart the assignment process."/>
-    <instruction val="Navigate to the Users page to perform the assignment."/>
-    <ui_action val="Click Overproof Logo icon in top navigation"/>
-    <ui_action val="Click 'Users' in dropdown menu"/>
-    <instruction val="Find and click on the specified user's name in the user list."/>
-    <ui_action val="Click on table row corresponding to the user's name"/>
-    <instruction val="Assign the goal set and save."/>
-    <ui_action val="Select the newly created goal set from the 'Goal Set' dropdown"/>
-    <ui_action val="Click button with text 'Save'"/>
+    <instruction val="For each available quote, you can perform several actions. Choose one of the following:" />
+    <instruction val="To see a summary, click 'Quote Details'." />
+    <ui_action val="button:contains('Quote Details')" />
+    <instruction val="To save a PDF of the quote, click 'Download'." />
+    <ui_action val="button:contains('Download')" />
+    <instruction val="To create a new quote record in your AMS, click 'Send to AMS'. Confirm in the popup." />
+    <ui_action val="button:contains('Send to AMS')" />
+    <instruction val="To go to the carrier's website to finalize, click 'Bridge'." />
+    <ui_action val="button:contains('Bridge')" />
+    <instruction val="If available, to bind the policy directly from this screen, click 'Bind'." />
+    <ui_action val="button:contains('Bind')" />
   </step>
-</task>
-<task name="Create an Account Set">
-  <step step_num="1">
-    <instruction val="Ask the user for a name and description for the new account set."/>
-    <instruction val="Then ask: 'How do you want to define this account set? Based on (1) Sold State, such as accounts that haven't ordered in 90 days, or (2) Menu Filters, such as accounts selling a competitor's product?'"/>
-    <instruction val="Navigate to the Account Sets page."/>
-    <ui_action val="Click Overproof Logo icon in top navigation"/>
-    <ui_action val="Click 'Account Sets' in dropdown menu"/>
-    <ui_action val="Click button with text 'Add a Set'"/>
-    <instruction val="Enter the user-provided name and description."/>
-    <ui_action val="Fill 'Name' text input"/>
-    <ui_action val="Fill 'Description' text input"/>
-    <ui_action val="Click radio button with label 'Define by Territory and Filters'"/>
-  </step>
-  <step step_num="2">
-    <instruction val="If the user chose 'Sold State': Proceed to Step 3. If the user chose 'Menu Filters': Proceed to Step 4."/>
-  </step>
-  <step step_num="3">
-    <instruction val="This is the 'Sold State' path. Ask the user for territory filters (state, city, or zip code), premise type (On/Off Premise), and ownership type."/>
-    <ui_action val="Fill 'Territory' filters as specified"/>
-    <ui_action val="Select 'Premise Type' from dropdown"/>
-    <ui_action val="Select 'Ownership Category' from dropdown"/>
-    <instruction val="Navigate to the Depletions filter tab."/>
-    <ui_action val="Click tab labeled 'Depletions'"/>
-    <instruction val="Ask the user if they want accounts that have 'Has Distribution' or 'No Distribution'. If 'Has Distribution', ask for the number of days since the last order to define the filter (e.g., 90+ days)."/>
-    <ui_action val="Click 'Has Distribution' or 'No Distribution'"/>
-    <ui_action val="Fill 'Unsold Days' input if specified"/>
-    <instruction val="Proceed to Step 5."/>
-  </step>
-  <step step_num="4">
-    <instruction val="This is the 'Menu Filters' path. Ask the user for territory filters (state, city, or zip code) and ownership type. Set Premise Type to 'On Premise'."/>
-    <ui_action val="Fill 'Territory' filters as specified"/>
-    <ui_action val="Select 'On Premise' in 'Premise Type' dropdown"/>
-    <ui_action val="Select 'Ownership Category' from dropdown"/>
-    <instruction val="Navigate to the Menu Filters tab."/>
-    <ui_action val="Click tab labeled 'Menu Filters'"/>
-    <instruction val="Ask the user for the menu criteria. Ask which brands or products to include or exclude. Confirm if they want to match ANY or ALL of the selected items."/>
-    <ui_action val="Fill 'Brands' and/or 'Products' filter inputs"/>
-    <instruction val="Proceed to Step 5."/>
-  </step>
-  <step step_num="5">
-    <instruction val="Finalize the creation of the account set."/>
-    <ui_action val="Click button with text 'Create Account Set'"/>
-    <ui_action val="Click button with text 'Ok' in confirmation modal"/>
-    <instruction val="The list of accounts is now generated. Inform the user they can manually add or remove accounts from this list before assigning."/>
-  </step>
-  <step step_num="6">
-    <instruction val="Ask the user which team member this Account Set should be assigned to."/>
-    <instruction val="Also, ask if field users should be allowed to add new accounts to this set."/>
-    <ui_action val="Click tab labeled 'Assignment'"/>
-    <ui_action val="Select user from the 'Assign to' dropdown"/>
-    <ui_action val="Check 'Yes, field users can add accounts to this set.' if requested"/>
-    <ui_action val="Click button with text 'Update Account Set'"/>
-    <ui_action val="Click button with text 'Ok' in confirmation modal"/>
-  </step>
-</task>
-<task name="Download a Performance Report">
-  <step step_num="1">
-    <instruction val="Ask the user which report they need to download: 'Goals', 'Activities', or 'Commitments'."/>
-    <instruction val="Navigate to the Performance Tracking page."/>
-    <ui_action val="Click 'Performance Tracking' in the main navigation"/>
-  </step>
-  <step step_num="2">
-    <instruction val="Click on the tab corresponding to the user's choice. If the selected tab is not visible, inform the user."/>
-    <ui_action val="Click tab labeled 'ACTIVITIES', 'COMMITMENTS', or 'GOALS'"/>
-  </step>
-  <step step_num="3">
-    <instruction val="Ask the user for any filters to apply to the report, such as date range, specific users, products, or accounts."/>
-    <instruction val="Apply all requested filters."/>
-    <ui_action val="Click filter dropdowns and select values as specified by user"/>
-  </step>
-  <step step_num="4">
-    <instruction val="Generate and download the report."/>
-    <ui_action val="Click button with text 'Download Report'"/>
-    <ui_action val="Click button with text 'Generate' in the modal"/>
-    <ui_action val="Click button with text 'Ok'"/>
-    <instruction val="Inform the user that the report is generating and a notification will appear when it's ready."/>
-  </step>
-  <step step_num="5">
-    <instruction val="Check for a notification on the bell icon."/>
-    <ui_action val="Click the bell icon in the top right corner"/>
-    <instruction val="Once the notification for the report appears, download the file."/>
-    <ui_action val="Click the download arrow icon on the report notification"/>
-    <instruction val="Inform the user the report has been downloaded."/>
-  </step>
-</task>
-<task name="Review Insights Dashboards">
-  <step step_num="1">
-    <instruction val="Ask the user which dashboard they would like to explore: the 'Overview' dash or the 'Sold State' dash."/>
-    <instruction val="If the user's depletions data is not up-to-date, advise them that the dashboard may not reflect recent sales and they should consistently share updated depletions data."/>
-    <instruction val="Navigate to the Insights page."/>
-    <ui_action val="Click 'Insights' in the main navigation"/>
-  </step>
-  <step step_num="2">
-    <instruction val="If user chose 'Overview': Navigate to the Overview dashboard. Ask the user if they want to apply any filters (e.g., market, date range, products, users)."/>
-    <instruction val="Apply the specified filters."/>
-    <ui_action val="Click filter buttons and select values"/>
-    <ui_action val="Click button with text 'Done' to apply filters"/>
-    <instruction val="Inform the user that they can export the data from any table by clicking the three-dot menu and selecting 'Export data'."/>
-    <instruction val="Also point out the different data tabs available at the bottom of the dashboard (e.g., History, New Brand Placements)."/>
-  </step>
-  <step step_num="3">
-    <instruction val="If user chose 'Sold State': Navigate to the Sold State dashboard."/>
-    <ui_action val="Click 'Sold State' tab or link"/>
-    <instruction val="Ask the user if they want to apply any filters (e.g., market, date range)."/>
-    <instruction val="Explain that this dashboard shows accounts sold to in the last 120 days and breaks down how long it has been since their last order (30, 60, 90, 120+ days) to help prioritize re-engagement."/>
+  <step step_num="7">
+    <instruction val="If you chose to 'Bind', you will be taken to the Payment screen." />
+    <instruction val="Select the appropriate payment plan from the 'Choose Payment Plan' dropdown." />
+    <ui_action val="select containing payment plan options" />
+    <instruction val="Click the 'Bind Policy' button to finalize the policy." />
+    <ui_action val="button:contains('Bind Policy')" />
   </step>
 </task>
 ```
