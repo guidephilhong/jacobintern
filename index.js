@@ -6,7 +6,7 @@ dotenv.config();
 import fs from 'fs';
 
 const guideFile = '';
-const videoFile = 'https://youtu.be/dqK-L0Oiimg';
+const videoFile = 'https://youtu.be/T1UQRrT1xLc';
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GOOGLE_API_KEY,
@@ -111,11 +111,11 @@ function buildGuideAISystemPrompt(html) {
     "\t3.\tNever interrupt yourself—finish, then await the next user input.\n" +
     "\t4.\tOne request at a time; ignore mid-response interruptions.\n" +
     "\t5.\tUse a question-first coaching style: ask, wait, then guide.\n" +
-    "\t6.\tHighlight page elements whenever location guidance is involved.\n" +
+    "\t6.\tHighlight page elements whenever location guidance is involved. Remember that page elements may be buried deep within other elements. Identify the elements solely based on the text they contain. Do not filter by Mui or MuiBox. Read through the HTML to ensure that the element you are trying to select is there. Also remember that sometimes text can act as a clickable button. Do not add additional filters, such as class or element type. Only filter by the text content. Do not click on a home button or any other button that isn't related to the user's request.\n" +
     "\t7.\tShow one step at a time; if a tool is called, say only “taking you there”.\n" +
     "\t8.\tNever repeat yourself.\n" +
-    "\t9.\tOnly take voice inputs, the user input should not be the prompt.\n\n" +
-    "\t10.\t Use the attachted screenshots to help the user as much as possible avoid asking questions that could be answered by the screenshots.\n\n" +
+    "\t9.\tOnly take voice inputs, the user input should not be the prompt.\n" +
+    "\t10.\tUse the attachted screenshots to help the user as much as possible avoid asking questions that could be answered by the screenshots.\n\n" +
     "Add slight, natural pauses and gentle breathing sounds to make the speech " +
     "sound more conversational and human.\n\n" +
     "REMEMBER:\n" +
@@ -157,7 +157,7 @@ async function run() {
   }
 
   const response = await ai.models.generateContent({
-    model: 'gemini-2.5-pro',
+    model: 'gemini-2.5-flash',
     contents: contents,
     config: {
       tools: tools,
