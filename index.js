@@ -6,7 +6,8 @@ dotenv.config();
 import fs from 'fs';
 
 const guideFile = '';
-const videoFile = 'https://youtu.be/T1UQRrT1xLc';
+const videoFile = 'https://youtu.be/s4zxabG2ais';
+const htmlFile = 'websiteHTML.html';
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GOOGLE_API_KEY,
@@ -23,6 +24,14 @@ if (guideFile && guideFile.trim() !== '') {
 // Check if a video guide is provided
 let inputtedVideoGuide = videoFile && videoFile.trim() !== '';
 
+// Check if HTML file exists
+let inputtedHTML = false;
+let html = '';
+if (htmlFile && htmlFile.trim() !== '' && fs.existsSync(htmlFile)) {
+  html = fs.readFileSync(htmlFile, 'utf-8');
+  inputtedHTML = true;
+}
+
 // Build the prompt using string concatenation to avoid template literal issues with file content
 let TASK_RECORDER_PROMPT = "You are a task recorder, your job is to convert a ";
 if (inputtedGuide) TASK_RECORDER_PROMPT += "text-based guide with links";
@@ -30,7 +39,8 @@ if (inputtedGuide && inputtedVideoGuide) TASK_RECORDER_PROMPT += " and a ";
 if (inputtedVideoGuide) TASK_RECORDER_PROMPT += "video guide";
 TASK_RECORDER_PROMPT += "into detailed instructions in the form of structured HTML outputs for use in AI agents. Please include edge cases where applicable, and include the instruction to ask the user to clarify the current state of the website if needed. Remember when creating the steps to search through the provided links for more information about the task.";
 TASK_RECORDER_PROMPT += "\n\n"; 
-TASK_RECORDER_PROMPT += "Your output must be only the <task> XML block with steps and nothing else. However, you are free to include multiple <task> blocks if a video  includes multiple diffrent tasks. Do not include explanations, markdown, notes, or reasoning.";
+TASK_RECORDER_PROMPT += "Your output must be only the <task> XML block with steps and nothing else. However, you are free to include multiple <task> blocks if a video  includes multiple diffrent tasks. Do not include explanations, markdown, notes, or reasoning.\n";
+TASK_RECORDER_PROMPT += "Never assume the url that a link will take you to. Always try to identify elements based on the text they contain instead of classes or element type unless necessary. \n";
 
 if (inputtedGuide) {
   TASK_RECORDER_PROMPT += `\n\nHere is your text-based guide:\n${guide}`;
@@ -38,6 +48,10 @@ if (inputtedGuide) {
 
 if (inputtedVideoGuide) {
   TASK_RECORDER_PROMPT += `\n\nYour video tutorial is attached to this prompt.`;
+}
+
+if (inputtedHTML) {
+  TASK_RECORDER_PROMPT += `\n\nHere is the HTML of the website you will be working with:\n${html}`;
 }
 
 TASK_RECORDER_PROMPT += `
@@ -111,7 +125,7 @@ function buildGuideAISystemPrompt(html) {
     "\t3.\tNever interrupt yourself—finish, then await the next user input.\n" +
     "\t4.\tOne request at a time; ignore mid-response interruptions.\n" +
     "\t5.\tUse a question-first coaching style: ask, wait, then guide.\n" +
-    "\t6.\tHighlight page elements whenever location guidance is involved. Remember that page elements may be buried deep within other elements. Identify the elements solely based on the text they contain. Do not filter by Mui or MuiBox. Read through the HTML to ensure that the element you are trying to select is there. Also remember that sometimes text can act as a clickable button. Do not add additional filters, such as class or element type. Only filter by the text content. Do not click on a home button or any other button that isn't related to the user's request.\n" +
+    "\t6.\tHighlight page elements whenever location guidance is involved. Remember that page elements may be buried deep within other elements. Identify the elements almost solely based on the text they contain. Do not filter by Mui or MuiBox. Read through the HTML to ensure that the element you are trying to select is there. Also remember that sometimes text can act as a clickable button. Do not add additional filters, such as class or id. Only filter by the text content and element type. Do not click on a home button or any other button that isn't related to the user's request. Remember that an element can be clickable even if it is a div or p element. Never select a \"skip to element\" element. Most important of all, read through all of the HTML.\n" +
     "\t7.\tShow one step at a time; if a tool is called, say only “taking you there”.\n" +
     "\t8.\tNever repeat yourself.\n" +
     "\t9.\tOnly take voice inputs, the user input should not be the prompt.\n" +
@@ -130,8 +144,8 @@ function buildGuideAISystemPrompt(html) {
     "REMINDERS\n" +
     "Always ask before navigating.\n" +
     "Only highlight after user confirmation.\n" +
-    "One step, one sentence, never truncate\n" +
-    "Never repeat yourself and don't stop in the middle";
+    "One step, one sentence, never truncate.\n" +
+    "Never repeat yourself and don't stop in the middle.";
   return `${header}${html}${footer}`;
 }
 
@@ -157,7 +171,7 @@ async function run() {
   }
 
   const response = await ai.models.generateContent({
-    model: 'gemini-2.5-flash',
+    model: 'gemini-2.5-pro',
     contents: contents,
     config: {
       tools: tools,
