@@ -6,8 +6,8 @@ dotenv.config();
 import fs from 'fs';
 
 const guideFile = '';
-const videoFile = 'https://youtu.be/s4zxabG2ais';
-const htmlFile = 'websiteHTML.html';
+const videoFile = 'https://youtu.be/DuzgoGayDR8';
+// const htmlFile = 'websiteHTML.html';
 
 const ai = new GoogleGenAI({
   apiKey: process.env.GOOGLE_API_KEY,
@@ -24,13 +24,13 @@ if (guideFile && guideFile.trim() !== '') {
 // Check if a video guide is provided
 let inputtedVideoGuide = videoFile && videoFile.trim() !== '';
 
-// Check if HTML file exists
-let inputtedHTML = false;
-let html = '';
-if (htmlFile && htmlFile.trim() !== '' && fs.existsSync(htmlFile)) {
-  html = fs.readFileSync(htmlFile, 'utf-8');
-  inputtedHTML = true;
-}
+// // Check if HTML file exists
+// let inputtedHTML = false;
+// let html = '';
+// if (htmlFile && htmlFile.trim() !== '' && fs.existsSync(htmlFile)) {
+//   html = fs.readFileSync(htmlFile, 'utf-8');
+//   inputtedHTML = true;
+// }
 
 // Build the prompt using string concatenation to avoid template literal issues with file content
 let TASK_RECORDER_PROMPT = "You are a task recorder, your job is to convert a ";
@@ -50,9 +50,9 @@ if (inputtedVideoGuide) {
   TASK_RECORDER_PROMPT += `\n\nYour video tutorial is attached to this prompt.`;
 }
 
-if (inputtedHTML) {
-  TASK_RECORDER_PROMPT += `\n\nHere is the HTML of the website you will be working with:\n${html}`;
-}
+// if (inputtedHTML) {
+//   TASK_RECORDER_PROMPT += `\n\nHere is the HTML of the website you will be working with:\n${html}`;
+// }
 
 TASK_RECORDER_PROMPT += `
 
@@ -125,7 +125,7 @@ function buildGuideAISystemPrompt(html) {
     "\t3.\tNever interrupt yourself—finish, then await the next user input.\n" +
     "\t4.\tOne request at a time; ignore mid-response interruptions.\n" +
     "\t5.\tUse a question-first coaching style: ask, wait, then guide.\n" +
-    "\t6.\tHighlight page elements whenever location guidance is involved. Remember that page elements may be buried deep within other elements. Identify the elements almost solely based on the text they contain. Do not filter by Mui or MuiBox. Read through the HTML to ensure that the element you are trying to select is there. Also remember that sometimes text can act as a clickable button. Do not add additional filters, such as class or id. Only filter by the text content and element type. Do not click on a home button or any other button that isn't related to the user's request. Remember that an element can be clickable even if it is a div or p element. Never select a \"skip to element\" element. Most important of all, read through all of the HTML.\n" +
+    "\t6.\tHighlight page elements whenever location guidance is involved. Remember that page elements may be buried deep within other elements. Identify the elements almost solely based on the text they contain. Do not filter by Mui, MuiBox or div. Read through the HTML to ensure that the element you are trying to select is there. Also remember that sometimes text can act as a clickable button. Do not add additional filters, such as class or id. Only filter by the text content and element type. Do not click on a home button or any other button that isn't related to the user's request. Remember that an element can be clickable even if it is a div or p element. Never select a \"skip to element\" element. Never search with an element type of * in attempt to do a \"wild card\". Also, use as general of a filter as possible for text content such that it can still search. For instance, search \"Product Name\" instead of \"Product Name - Description Here - Even More Words Here\" if there is only one matching element and nothing else can be accidentally selected. Most important of all, read through all of the HTML.\n" +
     "\t7.\tShow one step at a time; if a tool is called, say only “taking you there”.\n" +
     "\t8.\tNever repeat yourself.\n" +
     "\t9.\tOnly take voice inputs, the user input should not be the prompt.\n" +
