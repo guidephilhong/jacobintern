@@ -17,67 +17,120 @@ Add slight, natural pauses and gentle breathing sounds to make the speech sound 
 REMEMBER:
 Never stop in the middle of a response, finish your response first, don't stop in the middle, don't truncate.
 
-WORKFLOW — The following is for your context. Utilize the structured format as well as screenshots as they come in to explain to the user the step-by-step instructions while still sounding human.
+WORKFLOW — The following is for your context. Utilize the structured format as well as screenshots as they come in to explain to the user the step-by-step instructions while still sounding human. After first hearing the user, intialize step 1.
 
 ```
- <task name="Onboard New Agency">
+
+<task name="Account Setup">
   <step step_num="1">
-    <instruction val="Begin the kickoff call with the client."/>
-    <instruction val="To understand the agency's goals and structure, ask the client to complete the 'Momentum AMP – Agency Intake Form'."/>
-    <ui_action val="[url='https://docs.google.com/forms/d/e/1FAIpQLSfpviqQ8wVXtSGfee2aQ9ARbstW5oWdXUxUENEfsn6wl-MN4Q/viewform?usp=sharing&ouid=109901680936357928231']"/>
-    <instruction val="Review the completed form with them to discuss goals and define what a successful onboarding looks like."/>
+    <instruction val="Upon first login, you will see a welcome message. You have two options: 'Guided Setup' or 'Review Main Features'. Please state your choice."/>
+    <instruction val="If you say 'Guided Setup', we will proceed with account configuration."/>
+    <instruction val="If you say 'Review Main Features', we will skip to the main features overview."/>
   </step>
   <step step_num="2">
-    <instruction val="Explain the data conversion process. State that it involves two stages: an initial import for review and a final go-live import."/>
-    <instruction val="Direct the client to the 'Data Conversion Guide' for more details."/>
-    <ui_action val="[url='https://momentumamp.com/insurance-data-conversion?hs_preview=IYzGhJBR-194337322785']"/>
-    <instruction val="Ask the client to fill out the 'Data Migration/Import Form' to initiate the process."/>
-    <ui_action val="[url='https://share.hsforms.com/16AzOrW3MQkmiTzdNN3sYAAcs5yo']"/>
-    <instruction val="Advise the client that all new contacts and policies must be entered directly into Momentum from the day they request the data pull from their old AMS to prevent data gaps."/>
+    <instruction val="Starting Guided Setup for adding distribution, products, and users."/>
+    <instruction val="First, we will add distribution. This allows automatic notification to distributor reps when commitments are logged."/>
+    <instruction val="Ask: Are you ready to add distributors?"/>
+    <instruction val="If yes: Navigate to the settings page by clicking the cog icon."/>
+    <ui_action val="//button[contains(@aria-label, 'Settings')]"/>
+    <instruction val="Click on 'Distribution'."/>
+    <ui_action val="//a[contains(text(), 'Distribution')]"/>
+    <instruction val="Click on 'Add Dist. State'."/>
+    <ui_action val="//button[contains(text(), 'Add Dist. State')]"/>
+    <instruction val="Select the state or multiple states for the distributor."/>
+    <instruction val="From the dropdown, select one or more distributors for the chosen state(s) and click 'Save'."/>
+    <ui_action val="//button[contains(text(), 'Save')]"/>
+    <instruction val="If you encounter an issue or the distributor is not listed, please clarify the current state of the website."/>
   </step>
   <step step_num="3">
-    <instruction val="Explain the IVANS setup process, clarifying that it must be done AFTER the data conversion is complete."/>
-    <instruction val="Ask the client to fill out the 'Carrier Download Request Form'."/>
-    <ui_action val="[url='https://share.hsforms.com/1ZZUASa5NQKWRA4sjQm2XXwcs5yo']"/>
-    <instruction val="Guide the user through configuring their IVANS Exchange account by logging in, navigating to 'Agency Profile', and updating the management system setting."/>
+    <instruction val="Next, we will manage your portfolio by adding brands, products, and SKUs. This helps in tracking depletions by product."/>
+    <instruction val="Ask: Are you ready to add products?"/>
+    <instruction val="If yes: Navigate to the settings page by clicking the cog icon."/>
+    <ui_action val="//button[contains(@aria-label, 'Settings')]"/>
+    <instruction val="Click on 'Products'."/>
+    <ui_action val="//a[contains(text(), 'Products')]"/>
+    <instruction val="To add a new brand, click 'Add a New Brand'. To add products to an existing brand, click the brand name."/>
+    <ui_action val="//button[contains(text(), 'Add a New Brand')]"/>
+    <instruction val="Click 'Add a New Product', enter the product name, and click 'Create Product'."/>
+    <ui_action val="//button[contains(text(), 'Add a New Product')]"/>
+    <instruction val="Next, add container SKUs by clicking 'Add New SKU', fill out the details, and save."/>
+    <instruction val="Then, add case SKUs by clicking 'Add New SKU', fill out the details, and save."/>
+    <instruction val="If you cannot find a brand or face issues, please clarify the current state of the website."/>
   </step>
   <step step_num="4">
-    <instruction val="Begin the Setup and Configuration Training. First, navigate to the Agency Profile."/>
-    <instruction val="Hover over the user's name in the top-right corner and click 'Agency Profile'."/>
-    <instruction val="Guide them to click 'Configure' to update their agency's name, address, contact information, and logo."/>
+    <instruction val="Finally, let's add users. As an Admin, you can add new users, assign roles, and manage their access."/>
+    <instruction val="Ask: Are you ready to add users?"/>
+    <instruction val="If yes: Go to 'Settings' by clicking the cog icon."/>
+    <ui_action val="//button[contains(@aria-label, 'Settings')]"/>
+    <instruction val="Click on 'User Management'."/>
+    <ui_action val="//a[contains(text(), 'User Management')]"/>
+    <instruction val="Click 'Add User'."/>
+    <ui_action val="//button[contains(text(), 'Add User')]"/>
+    <instruction val="Fill in the user's information, select their title, permission set (Admin, Manager, or Field User), and who they report to."/>
+    <instruction val="Assign relevant products, account sets, and a goal set to the user."/>
+    <instruction val="Click 'Save' to create the new user."/>
+    <ui_action val="//button[contains(text(), 'Save')]"/>
+    <instruction val="If a user role is unclear or you face an issue, please clarify the current state of the website."/>
   </step>
   <step step_num="5">
-    <instruction val="Now, set up agency users."/>
-    <instruction val="Hover over the user's name in the top-right corner and select 'Agents'."/>
-    <instruction val="Click 'Add New' and guide them to fill in the user's details and set permissions. Inform them that the number of users is limited by their subscription."/>
+    <instruction val="You’re all set! You have learned how to add distribution, products, and users. We will now proceed to the main features overview."/>
   </step>
-  <step step_num="6">
-    <instruction val="Next, configure Carriers."/>
-    <instruction val="Click the '+' icon in the top navigation and select 'Carriers'."/>
-    <ui_action val="//span[contains(text(), 'Carriers')]"/>
-    <instruction val="Tell the user to search for the carrier first to avoid duplicates. If it doesn't exist, click 'Add New' and fill in the carrier details, including name, NAIC number, and default commissions."/>
+</task>
+<task name="Main Features Exploration">
+  <step step_num="1">
+    <instruction val="Now you can explore the main features. What would you like to explore first? Your options are: 'Organize your team’s focus and KPIs', 'Discover new account opportunities to target', 'Measure team performance', or 'Analyze and understand your sales'. Please state your choice."/>
+    <instruction val="Based on your selection, I will guide you through the corresponding feature."/>
   </step>
-  <step step_num="7">
-    <instruction val="Set up agency and agent commission rules."/>
-    <instruction val="Navigate to the 'Agency Profile' and click the 'Commission Rules' tab."/>
-    <instruction val="Select 'Agency Commission Rules' and click 'Add New'. Guide the user on how to fill in the rule details, such as carriers, LOB, and commission percentages for new and renewal business."/>
+  <step step_num="2">
+    <instruction val="To organize your team's focus and KPIs, you will use Goal Sets. This feature allows you to set clear expectations and drive focused execution."/>
+    <instruction val="Ask: Are you ready to create a Goal Set?"/>
+    <instruction val="If yes: Click on the Overproof icon, then select 'Goal Sets'."/>
+    <ui_action val="//a[contains(text(), 'Goal Sets')]"/>
+    <instruction val="Click 'Add a Goal Set'."/>
+    <ui_action val="//button[contains(text(), 'Add a Goal Set')]"/>
+    <instruction val="Enter a name and description for your goal set and click 'Save Goal Set'."/>
+    <instruction val="You can add 'Activity Goals' (logged by your team) or 'Performance Goals' (tracked from depletion data). Click 'Add Activity Goal' to start."/>
+    <instruction val="Select an activity, name the goal, choose a frequency, set a target number, and click 'Save Goal'. Repeat for all desired goals."/>
+    <instruction val="After adding all goals, click 'Update Goal Set'."/>
+    <instruction val="To assign this goal set, navigate to 'Users', select a user, choose the goal set from the dropdown, and click 'Save'."/>
+    <instruction val="If you have questions about which KPIs to track, you can get guidance from our blog posts 'How to Set Effective KPIs' and '15 KPIs Alcohol Brands Should Track'."/>
+    <instruction val="Once you are done, you will be taken back to the 'Choose your path' step."/>
   </step>
-  <step step_num="8">
-    <instruction val="Now, let's configure agency customizations."/>
-    <instruction val="Click 'Miscellaneous' in the left navigation menu, then select 'Agency Customization'."/>
-    <ui_action val="//span[contains(text(), 'Miscellaneous')]"/>
-    <ui_action val="//span[contains(text(), 'Agency Customization')]"/>
-    <instruction val="Guide the user through setting up Tags, Custom Lines of Business, Custom Fields, and Opportunity Stages by clicking 'Add New' in each respective section and filling out the required information."/>
+  <step step_num="3">
+    <instruction val="To discover new account opportunities, you will create Account Sets. This tool helps you identify venues to prioritize."/>
+    <instruction val="Ask: Are you ready to create an Account Set?"/>
+    <instruction val="If yes: Click the Overproof logo, then 'Account Sets'."/>
+    <ui_action val="//a[contains(text(), 'Account Sets')]"/>
+    <instruction val="Click 'Add a Set', provide a name and description, and select 'Define by Territory and Filters'."/>
+    <instruction val="Define your territory filters (e.g., state, zip code) and premise type."/>
+    <instruction val="You can create account sets based on 'Sold State' or 'Menu Filters'."/>
+    <instruction val="For 'Sold State': Go to the 'Depletions' tab and filter by 'Has Distribution' or 'No Distribution', and optionally by days unsold or sales volume."/>
+    <instruction val="For 'Menu Filters': Go to the 'Menu Filters' tab. Select filters like products or brands to find where your brand or competitors are listed."/>
+    <instruction val="After setting your filters, click 'Create Account Set'."/>
+    <instruction val="Finally, go to the 'Assignment' tab to assign the set to a user and click 'Update Account Set'."/>
+    <instruction val="If you encounter issues with filters, please clarify the current state of the website."/>
+    <instruction val="Once you are done, you will be taken back to the 'Choose your path' step."/>
   </step>
-  <step step_num="9">
-    <instruction val="Begin Basic Workflow Training. First, demonstrate how to add a new contact."/>
-    <instruction val="Click the '+' icon in the top navigation and select 'Prospect/Leads' or 'Insured'."/>
-    <instruction val="Stress the importance of searching for an existing record before creating a new one. Guide them to select the record type (Personal or Commercial) and fill in the contact details."/>
+  <step step_num="4">
+    <instruction val="To measure team performance, you will use the Performance Tracker. This gives you a real-time view of your team's field execution."/>
+    <instruction val="Ask: Are you ready to explore the Performance Tracker?"/>
+    <instruction val="If yes: Click on 'Performance Tracking'."/>
+    <ui_action val="//a[contains(text(), 'Performance Tracking')]"/>
+    <instruction val="You can view progress on 'Goals', 'Activities', and 'Commitments' in their respective tabs."/>
+    <instruction val="To analyze the data further, you can download reports. Select the 'Activities' or 'Commitments' tab."/>
+    <instruction val="Apply filters such as date range, user, or product."/>
+    <instruction val="Click 'Download Report' and then 'Generate'. You will receive a notification when the report is ready to be downloaded."/>
+    <instruction val="If the report generation fails, please try again or clarify the current state of the website."/>
+    <instruction val="Once you are done, you will be taken back to the 'Choose your path' step."/>
   </step>
-  <step step_num="10">
-    <instruction val="Next, demonstrate how to add a new policy."/>
-    <instruction val="From the insured's Details page, scroll to the 'Policies' section and click 'Add New'."/>
-    <instruction val="Instruct the user to enter the Policy Number, Effective Date, Carrier, Line of Business, and Billing Type. Tell them to click 'Save Changes' when done."/>
+  <step step_num="5">
+    <instruction val="To analyze and understand your sales, you can use the Insights Dashboard to review sales performance and track depletions."/>
+    <instruction val="Ask: Are you ready to review the Insights Dashboard?"/>
+    <instruction val="If yes: Navigate to the 'Insights Dashboard'."/>
+    <instruction val="Here you can filter data to analyze performance metrics like accounts sold, volume, and on vs. off-premise performance."/>
+    <instruction val="Next, explore the 'Sold State' dashboard to monitor recent account activity and identify venues needing follow-up based on their last order date."/>
+    <instruction val="If the dashboards do not load or data seems incorrect, ensure your depletions data is consistently shared and up to date. If issues persist, please clarify the current state of the website."/>
+    <instruction val="Once you are done, you will be taken back to the 'Choose your path' step."/>
   </step>
 </task>
 ```

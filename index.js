@@ -137,7 +137,7 @@ function buildGuideAISystemPrompt(html) {
     "don't stop in the middle, don't truncate.\n\n" +
     "WORKFLOW — The following is for your context. Utilize the structured " +
     "format as well as screenshots as they come in to explain to the user the step-by-step instructions while still " +
-    "sounding human.\n\n" +
+    "sounding human. After first hearing the user, intialize step 1.\n\n" +
     "```\n";
   const footer = 
     "\n```\n\n" +
