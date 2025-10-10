@@ -5,8 +5,8 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 import fs from 'fs';
 
-const guideFile = '';
-const videoFile = 'https://youtu.be/DuzgoGayDR8';
+const guideFile = 'inputGuide.txt';
+const videoFile = '';
 // const htmlFile = 'websiteHTML.html';
 
 const ai = new GoogleGenAI({
@@ -37,7 +37,7 @@ let TASK_RECORDER_PROMPT = "You are a task recorder, your job is to convert a ";
 if (inputtedGuide) TASK_RECORDER_PROMPT += "text-based guide with links";
 if (inputtedGuide && inputtedVideoGuide) TASK_RECORDER_PROMPT += " and a ";
 if (inputtedVideoGuide) TASK_RECORDER_PROMPT += "video guide";
-TASK_RECORDER_PROMPT += "into detailed instructions in the form of structured HTML outputs for use in AI agents. Please include edge cases where applicable, and include the instruction to ask the user to clarify the current state of the website if needed. Remember when creating the steps to search through the provided links for more information about the task.";
+TASK_RECORDER_PROMPT += "into detailed instructions in the form of structured HTML outputs for use in AI agents. Please include edge cases where applicable, and include the instruction to ask the user to clarify the current state of the website if needed. Remember when creating the steps to search through each of the provided links for more information about the task.";
 TASK_RECORDER_PROMPT += "\n\n"; 
 TASK_RECORDER_PROMPT += "Your output must be only the <task> XML block with steps and nothing else. However, you are free to include multiple <task> blocks if a video  includes multiple diffrent tasks. Do not include explanations, markdown, notes, or reasoning.\n";
 TASK_RECORDER_PROMPT += "Never assume the url that a link will take you to. Always try to identify elements based on the text they contain instead of classes or element type unless necessary. \n";

@@ -20,54 +20,64 @@ Never stop in the middle of a response, finish your response first, don't stop i
 WORKFLOW — The following is for your context. Utilize the structured format as well as screenshots as they come in to explain to the user the step-by-step instructions while still sounding human.
 
 ```
-<task name="Find and Purchase an Item on Amazon">
+ <task name="Onboard New Agency">
   <step step_num="1">
-    <instruction val="Ask the user to clarify if they are on the Amazon homepage. If not, navigate to https://www.amazon.com." />
-    <instruction val="Ask the user: 'How would you like to find your item? By searching with the search bar or by browsing categories?'" />
-    <instruction val="If the user wants to search, proceed to Step 2. If the user wants to browse, proceed to Step 3." />
+    <instruction val="Begin the kickoff call with the client."/>
+    <instruction val="To understand the agency's goals and structure, ask the client to complete the 'Momentum AMP – Agency Intake Form'."/>
+    <ui_action val="[url='https://docs.google.com/forms/d/e/1FAIpQLSfpviqQ8wVXtSGfee2aQ9ARbstW5oWdXUxUENEfsn6wl-MN4Q/viewform?usp=sharing&ouid=109901680936357928231']"/>
+    <instruction val="Review the completed form with them to discuss goals and define what a successful onboarding looks like."/>
   </step>
   <step step_num="2">
-    <instruction val="Ask the user what item they want to search for." />
-    <instruction val="Type the user's response into the 'Search Amazon' bar." />
-    <ui_action val="input with placeholder text 'Search Amazon'" />
-    <instruction val="Click the magnifying glass search button." />
-    <ui_action val="input with value 'Go'" />
-    <instruction val="After the search results load, proceed to Step 4." />
+    <instruction val="Explain the data conversion process. State that it involves two stages: an initial import for review and a final go-live import."/>
+    <instruction val="Direct the client to the 'Data Conversion Guide' for more details."/>
+    <ui_action val="[url='https://momentumamp.com/insurance-data-conversion?hs_preview=IYzGhJBR-194337322785']"/>
+    <instruction val="Ask the client to fill out the 'Data Migration/Import Form' to initiate the process."/>
+    <ui_action val="[url='https://share.hsforms.com/16AzOrW3MQkmiTzdNN3sYAAcs5yo']"/>
+    <instruction val="Advise the client that all new contacts and policies must be entered directly into Momentum from the day they request the data pull from their old AMS to prevent data gaps."/>
   </step>
   <step step_num="3">
-    <instruction val="Click the 'All' button in the top-left corner to open the category menu." />
-    <ui_action val="link with text 'All'" />
-    <instruction val="Ask the user to specify which department and sub-category they are interested in, and click on their selections." />
-    <instruction val="Once on the desired category page, proceed to Step 4." />
+    <instruction val="Explain the IVANS setup process, clarifying that it must be done AFTER the data conversion is complete."/>
+    <instruction val="Ask the client to fill out the 'Carrier Download Request Form'."/>
+    <ui_action val="[url='https://share.hsforms.com/1ZZUASa5NQKWRA4sjQm2XXwcs5yo']"/>
+    <instruction val="Guide the user through configuring their IVANS Exchange account by logging in, navigating to 'Agency Profile', and updating the management system setting."/>
   </step>
   <step step_num="4">
-    <instruction val="From the list of items, please click on the one you'd like to purchase to go to its product page." />
-    <instruction val="Ask the user to clarify if they need to scroll or go to the next page of results to find their item." />
+    <instruction val="Begin the Setup and Configuration Training. First, navigate to the Agency Profile."/>
+    <instruction val="Hover over the user's name in the top-right corner and click 'Agency Profile'."/>
+    <instruction val="Guide them to click 'Configure' to update their agency's name, address, contact information, and logo."/>
   </step>
   <step step_num="5">
-    <instruction val="On the product page, check for any options that need to be selected." />
-    <instruction val="Ask the user if there are options like different styles, gift amounts, or sizes, and ask them to specify their choice." />
-    <instruction val="Ask the user for the desired quantity and select it from the quantity dropdown menu." />
-    <ui_action val="select with name 'quantity'" />
-    <instruction val="Click the 'Add to Cart' button." />
-    <ui_action val="input with value 'Add to Cart'" />
-    <instruction val="Edge Case: Some items may have a 'Buy Now' button for immediate checkout instead of adding to the cart. Ask the user if they would like to proceed directly to checkout." />
-    <ui_action val="input with value 'Buy Now'" />
+    <instruction val="Now, set up agency users."/>
+    <instruction val="Hover over the user's name in the top-right corner and select 'Agents'."/>
+    <instruction val="Click 'Add New' and guide them to fill in the user's details and set permissions. Inform them that the number of users is limited by their subscription."/>
   </step>
   <step step_num="6">
-    <instruction val="After adding the item, ask the user: 'Would you like to view your cart or continue shopping?'" />
-    <instruction val="If 'view cart', click the 'Cart' icon in the top-right corner." />
-    <ui_action val="link containing text 'Cart'" />
-    <instruction val="If the user wants to continue shopping, ask them what they would like to do next. You can return to the homepage by clicking the Amazon logo in the top-left." />
-    <ui_action val="link with aria-label 'Amazon'" />
+    <instruction val="Next, configure Carriers."/>
+    <instruction val="Click the '+' icon in the top navigation and select 'Carriers'."/>
+    <ui_action val="//span[contains(text(), 'Carriers')]"/>
+    <instruction val="Tell the user to search for the carrier first to avoid duplicates. If it doesn't exist, click 'Add New' and fill in the carrier details, including name, NAIC number, and default commissions."/>
   </step>
   <step step_num="7">
-    <instruction val="On the Shopping Cart page, ask the user if they need to make any changes before checkout." />
-    <instruction val="To change the quantity of an item, click the plus or minus buttons next to the quantity display." />
-    <instruction val="To remove an item from the cart, click the 'Delete' link associated with that item." />
-    <ui_action val="input with value 'Delete'" />
-    <instruction val="When ready, click the 'Proceed to checkout' button to begin the payment process." />
-    <ui_action val="input with name 'proceedToRetailCheckout'" />
+    <instruction val="Set up agency and agent commission rules."/>
+    <instruction val="Navigate to the 'Agency Profile' and click the 'Commission Rules' tab."/>
+    <instruction val="Select 'Agency Commission Rules' and click 'Add New'. Guide the user on how to fill in the rule details, such as carriers, LOB, and commission percentages for new and renewal business."/>
+  </step>
+  <step step_num="8">
+    <instruction val="Now, let's configure agency customizations."/>
+    <instruction val="Click 'Miscellaneous' in the left navigation menu, then select 'Agency Customization'."/>
+    <ui_action val="//span[contains(text(), 'Miscellaneous')]"/>
+    <ui_action val="//span[contains(text(), 'Agency Customization')]"/>
+    <instruction val="Guide the user through setting up Tags, Custom Lines of Business, Custom Fields, and Opportunity Stages by clicking 'Add New' in each respective section and filling out the required information."/>
+  </step>
+  <step step_num="9">
+    <instruction val="Begin Basic Workflow Training. First, demonstrate how to add a new contact."/>
+    <instruction val="Click the '+' icon in the top navigation and select 'Prospect/Leads' or 'Insured'."/>
+    <instruction val="Stress the importance of searching for an existing record before creating a new one. Guide them to select the record type (Personal or Commercial) and fill in the contact details."/>
+  </step>
+  <step step_num="10">
+    <instruction val="Next, demonstrate how to add a new policy."/>
+    <instruction val="From the insured's Details page, scroll to the 'Policies' section and click 'Add New'."/>
+    <instruction val="Instruct the user to enter the Policy Number, Effective Date, Carrier, Line of Business, and Billing Type. Tell them to click 'Save Changes' when done."/>
   </step>
 </task>
 ```
