@@ -20,117 +20,211 @@ Never stop in the middle of a response, finish your response first, don't stop i
 WORKFLOW — The following is for your context. Utilize the structured format as well as screenshots as they come in to explain to the user the step-by-step instructions while still sounding human. After first hearing the user, intialize step 1.
 
 ```
-
-<task name="Account Setup">
+<task name="Update Agency Information">
   <step step_num="1">
-    <instruction val="Upon first login, you will see a welcome message. You have two options: 'Guided Setup' or 'Review Main Features'. Please state your choice."/>
-    <instruction val="If you say 'Guided Setup', we will proceed with account configuration."/>
-    <instruction val="If you say 'Review Main Features', we will skip to the main features overview."/>
+    <instruction val="Hover over your name in the upper-right corner of the screen."/>
+    <ui_action val="//span[contains(text(), 'your name')]"/>
+    <instruction val="From the dropdown menu, select 'Agency Profile'. Note: If you do not see this option, you may not have Agency Admin permissions."/>
+    <ui_action val="//a[contains(text(), 'Agency Profile')]"/>
   </step>
   <step step_num="2">
-    <instruction val="Starting Guided Setup for adding distribution, products, and users."/>
-    <instruction val="First, we will add distribution. This allows automatic notification to distributor reps when commitments are logged."/>
-    <instruction val="Ask: Are you ready to add distributors?"/>
-    <instruction val="If yes: Navigate to the settings page by clicking the cog icon."/>
-    <ui_action val="//button[contains(@aria-label, 'Settings')]"/>
-    <instruction val="Click on 'Distribution'."/>
-    <ui_action val="//a[contains(text(), 'Distribution')]"/>
-    <instruction val="Click on 'Add Dist. State'."/>
-    <ui_action val="//button[contains(text(), 'Add Dist. State')]"/>
-    <instruction val="Select the state or multiple states for the distributor."/>
-    <instruction val="From the dropdown, select one or more distributors for the chosen state(s) and click 'Save'."/>
-    <ui_action val="//button[contains(text(), 'Save')]"/>
-    <instruction val="If you encounter an issue or the distributor is not listed, please clarify the current state of the website."/>
+    <instruction val="In the upper-right corner of the Agency Profile page, click 'Configure'."/>
+    <ui_action val="//a[contains(text(), 'Configure')]"/>
   </step>
   <step step_num="3">
-    <instruction val="Next, we will manage your portfolio by adding brands, products, and SKUs. This helps in tracking depletions by product."/>
-    <instruction val="Ask: Are you ready to add products?"/>
-    <instruction val="If yes: Navigate to the settings page by clicking the cog icon."/>
-    <ui_action val="//button[contains(@aria-label, 'Settings')]"/>
-    <instruction val="Click on 'Products'."/>
-    <ui_action val="//a[contains(text(), 'Products')]"/>
-    <instruction val="To add a new brand, click 'Add a New Brand'. To add products to an existing brand, click the brand name."/>
-    <ui_action val="//button[contains(text(), 'Add a New Brand')]"/>
-    <instruction val="Click 'Add a New Product', enter the product name, and click 'Create Product'."/>
-    <ui_action val="//button[contains(text(), 'Add a New Product')]"/>
-    <instruction val="Next, add container SKUs by clicking 'Add New SKU', fill out the details, and save."/>
-    <instruction val="Then, add case SKUs by clicking 'Add New SKU', fill out the details, and save."/>
-    <instruction val="If you cannot find a brand or face issues, please clarify the current state of the website."/>
+    <instruction val="Update the core agency details such as Agency Name, Address, Phone, Email, and Website."/>
+    <instruction val="Upload an agency logo. A PNG with a transparent background is recommended."/>
+    <ui_action val="id='logo-uploader'"/>
   </step>
   <step step_num="4">
-    <instruction val="Finally, let's add users. As an Admin, you can add new users, assign roles, and manage their access."/>
-    <instruction val="Ask: Are you ready to add users?"/>
-    <instruction val="If yes: Go to 'Settings' by clicking the cog icon."/>
-    <ui_action val="//button[contains(@aria-label, 'Settings')]"/>
-    <instruction val="Click on 'User Management'."/>
-    <ui_action val="//a[contains(text(), 'User Management')]"/>
-    <instruction val="Click 'Add User'."/>
-    <ui_action val="//button[contains(text(), 'Add User')]"/>
-    <instruction val="Fill in the user's information, select their title, permission set (Admin, Manager, or Field User), and who they report to."/>
-    <instruction val="Assign relevant products, account sets, and a goal set to the user."/>
-    <instruction val="Click 'Save' to create the new user."/>
-    <ui_action val="//button[contains(text(), 'Save')]"/>
-    <instruction val="If a user role is unclear or you face an issue, please clarify the current state of the website."/>
+    <instruction val="Review and configure additional settings, including Email &amp; Communication, Notifications &amp; Pop-Ups, Permissions, and Operational Defaults."/>
+    <instruction val="Note: Some menu and search settings may be overridden by newer Navigation Configurator tools. If your layout looks different, contact support to have the latest features enabled."/>
   </step>
   <step step_num="5">
-    <instruction val="You’re all set! You have learned how to add distribution, products, and users. We will now proceed to the main features overview."/>
+    <instruction val="After making all desired changes, click 'Update' in the upper-right corner to save."/>
+    <ui_action val="//button[contains(text(), 'Update')]"/>
   </step>
 </task>
-<task name="Main Features Exploration">
+<task name="Add and Manage Agency Users">
   <step step_num="1">
-    <instruction val="Now you can explore the main features. What would you like to explore first? Your options are: 'Organize your team’s focus and KPIs', 'Discover new account opportunities to target', 'Measure team performance', or 'Analyze and understand your sales'. Please state your choice."/>
-    <instruction val="Based on your selection, I will guide you through the corresponding feature."/>
+    <instruction val="Before adding a user, confirm you have an available user slot in your subscription. If not, navigate to 'Subscription and Payments' to increase your limit."/>
+    <instruction val="Hover over your name in the upper-right corner and select 'Agents' from the dropdown menu."/>
+    <ui_action val="//a[contains(text(), 'Agents')]"/>
   </step>
   <step step_num="2">
-    <instruction val="To organize your team's focus and KPIs, you will use Goal Sets. This feature allows you to set clear expectations and drive focused execution."/>
-    <instruction val="Ask: Are you ready to create a Goal Set?"/>
-    <instruction val="If yes: Click on the Overproof icon, then select 'Goal Sets'."/>
-    <ui_action val="//a[contains(text(), 'Goal Sets')]"/>
-    <instruction val="Click 'Add a Goal Set'."/>
-    <ui_action val="//button[contains(text(), 'Add a Goal Set')]"/>
-    <instruction val="Enter a name and description for your goal set and click 'Save Goal Set'."/>
-    <instruction val="You can add 'Activity Goals' (logged by your team) or 'Performance Goals' (tracked from depletion data). Click 'Add Activity Goal' to start."/>
-    <instruction val="Select an activity, name the goal, choose a frequency, set a target number, and click 'Save Goal'. Repeat for all desired goals."/>
-    <instruction val="After adding all goals, click 'Update Goal Set'."/>
-    <instruction val="To assign this goal set, navigate to 'Users', select a user, choose the goal set from the dropdown, and click 'Save'."/>
-    <instruction val="If you have questions about which KPIs to track, you can get guidance from our blog posts 'How to Set Effective KPIs' and '15 KPIs Alcohol Brands Should Track'."/>
-    <instruction val="Once you are done, you will be taken back to the 'Choose your path' step."/>
+    <instruction val="Click the 'Add New' button at the top of the Agents/Users list."/>
+    <ui_action val="//a[contains(text(), 'Add New')]"/>
   </step>
   <step step_num="3">
-    <instruction val="To discover new account opportunities, you will create Account Sets. This tool helps you identify venues to prioritize."/>
-    <instruction val="Ask: Are you ready to create an Account Set?"/>
-    <instruction val="If yes: Click the Overproof logo, then 'Account Sets'."/>
-    <ui_action val="//a[contains(text(), 'Account Sets')]"/>
-    <instruction val="Click 'Add a Set', provide a name and description, and select 'Define by Territory and Filters'."/>
-    <instruction val="Define your territory filters (e.g., state, zip code) and premise type."/>
-    <instruction val="You can create account sets based on 'Sold State' or 'Menu Filters'."/>
-    <instruction val="For 'Sold State': Go to the 'Depletions' tab and filter by 'Has Distribution' or 'No Distribution', and optionally by days unsold or sales volume."/>
-    <instruction val="For 'Menu Filters': Go to the 'Menu Filters' tab. Select filters like products or brands to find where your brand or competitors are listed."/>
-    <instruction val="After setting your filters, click 'Create Account Set'."/>
-    <instruction val="Finally, go to the 'Assignment' tab to assign the set to a user and click 'Update Account Set'."/>
-    <instruction val="If you encounter issues with filters, please clarify the current state of the website."/>
-    <instruction val="Once you are done, you will be taken back to the 'Choose your path' step."/>
+    <instruction val="Fill in the user's information, including First Name, Last Name, and Email Address. The email address will be used as their login username."/>
+    <instruction val="Check the 'Access' box to grant this agent login credentials as a User."/>
+    <instruction val="Set the appropriate permissions using the checkboxes. As a best practice, assign the minimum permissions necessary for the user’s role."/>
   </step>
   <step step_num="4">
-    <instruction val="To measure team performance, you will use the Performance Tracker. This gives you a real-time view of your team's field execution."/>
-    <instruction val="Ask: Are you ready to explore the Performance Tracker?"/>
-    <instruction val="If yes: Click on 'Performance Tracking'."/>
-    <ui_action val="//a[contains(text(), 'Performance Tracking')]"/>
-    <instruction val="You can view progress on 'Goals', 'Activities', and 'Commitments' in their respective tabs."/>
-    <instruction val="To analyze the data further, you can download reports. Select the 'Activities' or 'Commitments' tab."/>
-    <instruction val="Apply filters such as date range, user, or product."/>
-    <instruction val="Click 'Download Report' and then 'Generate'. You will receive a notification when the report is ready to be downloaded."/>
-    <instruction val="If the report generation fails, please try again or clarify the current state of the website."/>
-    <instruction val="Once you are done, you will be taken back to the 'Choose your path' step."/>
+    <instruction val="Click 'Update' to create the user record. An email will be sent to the new user to complete their setup and create a password."/>
+    <ui_action val="//button[contains(text(), 'Update')]"/>
+  </step>
+</task>
+<task name="Set Agency Commission Rules">
+  <step step_num="1">
+    <instruction val="Hover over your name in the upper-right corner and select 'Agency Profile'. Admin access is required."/>
+    <ui_action val="//a[contains(text(), 'Agency Profile')]"/>
+  </step>
+  <step step_num="2">
+    <instruction val="In the top navigation bar of the Agency Profile screen, click 'Commission Rules'."/>
+    <ui_action val="//a[contains(text(), 'Commission Rules')]"/>
+    <instruction val="Select 'Agency Commission Rules' from the options."/>
+    <ui_action val="//a[contains(text(), 'Agency Commission Rules')]"/>
+  </step>
+  <step step_num="3">
+    <instruction val="Click 'Add New' to create a new commission rule."/>
+    <ui_action val="//a[contains(text(), 'Add New')]"/>
+  </step>
+  <step step_num="4">
+    <instruction val="Configure the rule by selecting the applicable Carriers, MGAs, Line of Business, and effective date range."/>
+    <instruction val="Enter the commission percentages for New Business and Renewal."/>
+    <instruction val="If your agency splits commissions with an aggregator or cluster, use the 'Corporate Commission Info' fields to calculate your agency's retained commission."/>
   </step>
   <step step_num="5">
-    <instruction val="To analyze and understand your sales, you can use the Insights Dashboard to review sales performance and track depletions."/>
-    <instruction val="Ask: Are you ready to review the Insights Dashboard?"/>
-    <instruction val="If yes: Navigate to the 'Insights Dashboard'."/>
-    <instruction val="Here you can filter data to analyze performance metrics like accounts sold, volume, and on vs. off-premise performance."/>
-    <instruction val="Next, explore the 'Sold State' dashboard to monitor recent account activity and identify venues needing follow-up based on their last order date."/>
-    <instruction val="If the dashboards do not load or data seems incorrect, ensure your depletions data is consistently shared and up to date. If issues persist, please clarify the current state of the website."/>
-    <instruction val="Once you are done, you will be taken back to the 'Choose your path' step."/>
+    <instruction val="Click 'Save' to activate the rule. Note: If multiple rules could apply to a transaction, the system will use the most specific match."/>
+    <ui_action val="//button[contains(text(), 'Save')]"/>
+  </step>
+</task>
+<task name="Add a New Prospect or Insured">
+  <step step_num="1">
+    <instruction val="Ask: Are you adding a new prospect/lead or an existing client?"/>
+    <instruction val="In the upper-left navigation, click the '+' icon."/>
+    <ui_action val="//a[contains(@class, 'add-new')]"/>
+    <instruction val="Select 'Prospect/Leads' or 'Insured' from the dropdown."/>
+    <ui_action val="//a[contains(text(), 'Prospect/Leads')]"/>
+  </step>
+  <step step_num="2">
+    <instruction val="Before entering details, use the search bar at the top of the screen to check if the record already exists to avoid creating duplicates."/>
+    <ui_action val="id='search-bar'"/>
+    <instruction val="If a match is found, open the existing record. If no match is found, proceed to the next step."/>
+  </step>
+  <step step_num="3">
+    <instruction val="Select the record type: 'Personal', 'Commercial', 'Life/Health - Group', 'Life/Health - Individual', or 'Medicare'."/>
+    <instruction val="Enter the required information. For Commercial, this is 'Company Name'. For Personal, this is 'First Name' and 'Last Name'."/>
+    <instruction val="Fill in other recommended fields like Phone Number, Email Address, and Mailing Address."/>
+  </step>
+  <step step_num="4">
+    <instruction val="Click 'Save' to create the record. You will be redirected to the new record's 'Details' page."/>
+    <ui_action val="//button[contains(text(), 'Save')]"/>
+  </step>
+</task>
+<task name="Add a New Policy">
+  <step step_num="1">
+    <instruction val="First, I need to navigate to the correct insured's profile. Please tell me the name of the insured."/>
+    <instruction val="Use the global search bar at the top of the page to find the insured. Click their name in the search results to open their 'Details' page."/>
+    <ui_action val="id='global-search'"/>
+  </step>
+  <step step_num="2">
+    <instruction val="On the insured's 'Details' page, scroll down to the 'Policies' section."/>
+    <instruction val="Click 'Add New' to open the policy entry screen."/>
+    <ui_action val="//div[@id='policies-section']//a[contains(text(), 'Add New')]"/>
+  </step>
+  <step step_num="3">
+    <instruction val="Enter the policy information, including Policy Number, Effective Date, Business Type, Carrier, MGA (if applicable), and Line of Business."/>
+    <instruction val="Select the correct 'Billing Type' (e.g., Direct Bill, Agency Bill). This is critical for correct accounting."/>
+    <instruction val="Enter the premium amount and any breakdown of fees or taxes."/>
+  </step>
+  <step step_num="4">
+    <instruction val="Scroll down and click 'Save Changes' to store the policy record."/>
+    <ui_action val="//button[contains(text(), 'Save Changes')]"/>
+  </step>
+  <step step_num="5">
+    <instruction val="Ask: Are you ready to set up billing and commission tracking for this policy?"/>
+    <instruction val="If yes: Navigate to the 'Billing' tab for the policy you just created."/>
+    <ui_action val="//a[contains(text(), 'Billing')]"/>
+    <instruction val="Enter the premium, fees, and taxes, then click 'Generate Transaction'. This will calculate commissions, receivables, and payables."/>
+    <ui_action val="//button[contains(text(), 'Generate Transaction')]"/>
+  </step>
+</task>
+<task name="Create a Master Certificate">
+  <step step_num="1">
+    <instruction val="First, I need to navigate to the correct insured's profile. Please tell me the name of the insured."/>
+    <instruction val="Use the global search bar to find the insured and click on their profile."/>
+    <ui_action val="id='global-search'"/>
+  </step>
+  <step step_num="2">
+    <instruction val="Click on the 'Documents' tab within the insured's profile."/>
+    <ui_action val="//a[contains(text(), 'Documents')]"/>
+    <instruction val="In the navigation menu that appears, select 'Certificates Master'."/>
+    <ui_action val="//a[contains(text(), 'Certificates Master')]"/>
+  </step>
+  <step step_num="3">
+    <instruction val="Click the 'Add New' button."/>
+    <ui_action val="//a[contains(text(), 'Add New')]"/>
+  </step>
+  <step step_num="4">
+    <instruction val="Select a certificate template. For liability, this is typically 'ACORD 25 - Certificate of Liability Insurance'."/>
+    <ui_action val="id='template-dropdown'"/>
+    <instruction val="Enter a descriptive name for the certificate, such as '2025 Master Certificate'."/>
+  </step>
+  <step step_num="5">
+    <instruction val="Check the boxes for all policies that should be linked to this master certificate. The coverages from these policies will auto-populate on the certificate."/>
+    <instruction val="Review the populated coverages for accuracy and select the desired signature to appear on the certificate."/>
+  </step>
+  <step step_num="6">
+    <instruction val="Click 'Save' to finalize the Master Certificate."/>
+    <ui_action val="//button[contains(text(), 'Save')]"/>
+  </step>
+</task>
+<task name="Add a Certificate Holder and Send Certificate">
+  <step step_num="1">
+    <instruction val="Ask: Have you already created a Master Certificate for this insured?"/>
+    <instruction val="If no: I can guide you through creating one first."/>
+    <instruction val="If yes: I need to navigate to the correct insured's profile. Please tell me the name of the insured."/>
+    <instruction val="Use the global search bar to find the insured and click on their profile."/>
+    <ui_action val="id='global-search'"/>
+  </step>
+  <step step_num="2">
+    <instruction val="In the upper-right corner of the insured's profile, click 'Send Certificate'."/>
+    <ui_action val="//button[contains(text(), 'Send Certificate')]"/>
+  </step>
+  <step step_num="3">
+    <instruction val="Select the appropriate Master Certificate from the list."/>
+    <instruction val="Now, let's add the holder. Ask: Is the certificate holder already in the system?"/>
+    <instruction val="If yes: Select them from the 'Certificate Holder' dropdown menu."/>
+    <ui_action val="id='certificate-holder-dropdown'"/>
+    <instruction val="If no: Click 'Add New' next to the dropdown."/>
+    <ui_action val="//a[contains(text(), 'Add New')]"/>
+    <instruction val="Enter the holder's Name, Address, and Email, then click 'Add'. The holder will be saved for future use."/>
+  </step>
+  <step step_num="4">
+    <instruction val="Important: Does this holder also need to be an Additional Insured, Loss Payee, or Mortgagee on the policy itself?"/>
+    <instruction val="If yes: This process is incorrect. We must stop and add them via the 'Additional Interests' tab instead. Let me know if you'd like to do that."/>
+    <instruction val="If no: Proceed to the next step."/>
+  </step>
+  <step step_num="5">
+    <instruction val="Fill out any remaining fields, such as the 'Description of Operations'."/>
+    <instruction val="Click 'Send Certificate' to email the COI or 'Download' to save it as a PDF."/>
+    <ui_action val="//button[contains(text(), 'Send Certificate')]"/>
+  </step>
+</task>
+<task name="Set Up a Carrier">
+  <step step_num="1">
+    <instruction val="Click the '+' icon in the upper-left navigation menu and select 'Carriers'. Alternatively, navigate to 'Contacts' &gt; 'Carriers' in the left navigation menu."/>
+    <ui_action val="//a[contains(text(), 'Carriers')]"/>
+  </step>
+  <step step_num="2">
+    <instruction val="Before adding a new carrier, use the search bar to ensure it doesn't already exist."/>
+    <ui_action val="id='search-carriers'"/>
+    <instruction val="If no existing record is found, click 'Add New'."/>
+    <ui_action val="//a[contains(text(), 'Add New')]"/>
+  </step>
+  <step step_num="3">
+    <instruction val="Fill in the carrier's general information, including Name, NAIC number, and default commission percentages."/>
+    <instruction val="Enter the carrier's address, contact information, and agency portal details."/>
+  </step>
+  <step step_num="4">
+    <instruction val="In the 'Lines of Business' section, select all applicable lines your agency writes with this carrier."/>
+    <instruction val="Configure any other default settings as needed."/>
+  </step>
+  <step step_num="5">
+    <instruction val="Click 'Save' to create the carrier record."/>
+    <ui_action val="//button[contains(text(), 'Save')]"/>
   </step>
 </task>
 ```
