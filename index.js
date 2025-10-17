@@ -137,7 +137,7 @@ function buildGuideAISystemPrompt(html) {
     "don't stop in the middle, don't truncate.\n\n" +
     "WORKFLOW — The following is for your context. Utilize the structured " +
     "format as well as screenshots as they come in to explain to the user the step-by-step instructions while still " +
-    "sounding human. After first hearing the user, intialize step 1.\n\n" +
+    "sounding human. After first hearing the user, intialize the first task and step 1. After all steps are completed, move on to the next task. Never ask the user what they want to do next, always follow the workflow's next listed step/task. If the user says they already completed a step or task, feel free to move ahead.\n\n" +
     "```\n";
   const footer = 
     "\n```\n\n" +

@@ -33,16 +33,15 @@ Other Transactions: For miscellaneous financial entries.
 Working with Multiple Tabs: To work on multiple records simultaneously without losing your place, you can open records in new browser tabs. From a list view, right-click a record and select "Open Link in New Tab." This is useful for comparing insureds, updating multiple policies, or cross-referencing information.
 
 Workflow Guide for you to generate:
-1. https://momentumamp.freshdesk.com/support/solutions/articles/156000373341
-2. https://momentumamp.freshdesk.com/support/solutions/articles/156000373342
-3. https://momentumamp.freshdesk.com/support/solutions/articles/156000373343
-4. https://momentumamp.freshdesk.com/support/solutions/articles/156000373344
-5. https://momentumamp.freshdesk.com/support/solutions/articles/156000373410
-6. https://momentumamp.freshdesk.com/support/solutions/articles/156000373345, https://support.momentumamp.com/support/solutions/articles/156000373395-how-to-set-up-parent-carriers-in-momentum-ams
-7. https://momentumamp.freshdesk.com/support/solutions/articles/156000373346
-8. https://momentumamp.freshdesk.com/support/solutions/articles/156000373005
-9. https://momentumamp.freshdesk.com/support/solutions/articles/156000373006
-10. https://momentumamp.freshdesk.com/support/solutions/articles/156000373084
-11. https://momentumamp.freshdesk.com/support/solutions/articles/156000373041-how-to-create-a-master-certificate-in-momentum-ams
-12. https://momentumamp.freshdesk.com/support/solutions/articles/156000373088-how-to-add-a-holder-to-a-master-certificate
-13. https://momentumamp.freshdesk.com/support/solutions/articles/156000373340-how-to-access-agency-customization
+1. Agency Setup https://momentumamp.freshdesk.com/support/solutions/articles/156000373341
+2. Add Agency Users https://momentumamp.freshdesk.com/support/solutions/articles/156000373342
+3. Agency Comission Rules https://momentumamp.freshdesk.com/support/solutions/articles/156000373343
+4. Agent Comission Rules https://momentumamp.freshdesk.com/support/solutions/articles/156000373344
+5. Add Signatures https://momentumamp.freshdesk.com/support/solutions/articles/156000373410
+6. Create a Carrier https://momentumamp.freshdesk.com/support/solutions/articles/156000373345, https://support.momentumamp.com/support/solutions/articles/156000373395-how-to-set-up-parent-carriers-in-momentum-ams
+7. Create a MGA https://momentumamp.freshdesk.com/support/solutions/articles/156000373346
+8. Create a Commerical or Personal Prospect or Insured https://momentumamp.freshdesk.com/support/solutions/articles/156000373005
+9. Create a policy https://momentumamp.freshdesk.com/support/solutions/articles/156000373006
+10. Create a certificate holder https://momentumamp.freshdesk.com/support/solutions/articles/156000373084
+11. Create a Master Certificate https://momentumamp.freshdesk.com/support/solutions/articles/156000373041-how-to-create-a-master-certificate-in-momentum-ams
+12. Add a Holder to a Master Certificate https://momentumamp.freshdesk.com/support/solutions/articles/156000373088-how-to-add-a-holder-to-a-master-certificate

@@ -17,214 +17,334 @@ Add slight, natural pauses and gentle breathing sounds to make the speech sound 
 REMEMBER:
 Never stop in the middle of a response, finish your response first, don't stop in the middle, don't truncate.
 
-WORKFLOW — The following is for your context. Utilize the structured format as well as screenshots as they come in to explain to the user the step-by-step instructions while still sounding human. After first hearing the user, intialize step 1.
+WORKFLOW — The following is for your context. Utilize the structured format as well as screenshots as they come in to explain to the user the step-by-step instructions while still sounding human. After first hearing the user, intialize the first task and step 1. After all steps are completed, move on to the next task. Never ask the user what they want to do next, always follow the workflow's next listed step/task. If the user says they already completed a step or task, feel free to move ahead.
 
 ```
-<task name="Update Agency Information">
+
+<task name="Agency Setup">
   <step step_num="1">
-    <instruction val="Hover over your name in the upper-right corner of the screen."/>
-    <ui_action val="//span[contains(text(), 'your name')]"/>
-    <instruction val="From the dropdown menu, select 'Agency Profile'. Note: If you do not see this option, you may not have Agency Admin permissions."/>
-    <ui_action val="//a[contains(text(), 'Agency Profile')]"/>
+    <instruction val="Hover over your name in the upper-right corner of the screen." />
+    <ui_action val="//div[contains(@class, 'user-name') or contains(@class, 'agent-name')]" />
   </step>
   <step step_num="2">
-    <instruction val="In the upper-right corner of the Agency Profile page, click 'Configure'."/>
-    <ui_action val="//a[contains(text(), 'Configure')]"/>
+    <instruction val="Click on 'Agency Profile' from the dropdown menu. Note: If you do not see this option, you may not have Agency Admin permissions." />
+    <ui_action val="//a[contains(text(), 'Agency Profile')]" />
   </step>
   <step step_num="3">
-    <instruction val="Update the core agency details such as Agency Name, Address, Phone, Email, and Website."/>
-    <instruction val="Upload an agency logo. A PNG with a transparent background is recommended."/>
-    <ui_action val="id='logo-uploader'"/>
+    <instruction val="In the upper-right corner of the Agency Profile page, click 'Configure'." />
+    <ui_action val="//a[contains(text(), 'Configure')]" />
   </step>
   <step step_num="4">
-    <instruction val="Review and configure additional settings, including Email &amp; Communication, Notifications &amp; Pop-Ups, Permissions, and Operational Defaults."/>
-    <instruction val="Note: Some menu and search settings may be overridden by newer Navigation Configurator tools. If your layout looks different, contact support to have the latest features enabled."/>
+    <instruction val="Fill in or update the core agency information, including Agency Name, Address, Contact Information, and Website URL." />
+    <instruction val="Upload the agency logo. A PNG with a transparent background is recommended." />
   </step>
   <step step_num="5">
-    <instruction val="After making all desired changes, click 'Update' in the upper-right corner to save."/>
-    <ui_action val="//button[contains(text(), 'Update')]"/>
+    <instruction val="Configure additional settings such as email templates, notifications, security settings, and operational defaults as needed." />
+  </step>
+  <step step_num="6">
+    <instruction val="Click 'Update' in the upper-right corner to save all changes." />
+    <ui_action val="//button[contains(text(), 'Update')]" />
   </step>
 </task>
-<task name="Add and Manage Agency Users">
+<task name="Add Agency Users">
   <step step_num="1">
-    <instruction val="Before adding a user, confirm you have an available user slot in your subscription. If not, navigate to 'Subscription and Payments' to increase your limit."/>
-    <instruction val="Hover over your name in the upper-right corner and select 'Agents' from the dropdown menu."/>
-    <ui_action val="//a[contains(text(), 'Agents')]"/>
+    <instruction val="Ask: Do you have an available user slot in your subscription? If not, advise the user to go to 'Subscription and Payments' to increase the subscription limit before proceeding." />
   </step>
   <step step_num="2">
-    <instruction val="Click the 'Add New' button at the top of the Agents/Users list."/>
-    <ui_action val="//a[contains(text(), 'Add New')]"/>
+    <instruction val="Hover over your name in the upper-right corner of the screen." />
+    <ui_action val="//div[contains(@class, 'user-name') or contains(@class, 'agent-name')]" />
   </step>
   <step step_num="3">
-    <instruction val="Fill in the user's information, including First Name, Last Name, and Email Address. The email address will be used as their login username."/>
-    <instruction val="Check the 'Access' box to grant this agent login credentials as a User."/>
-    <instruction val="Set the appropriate permissions using the checkboxes. As a best practice, assign the minimum permissions necessary for the user’s role."/>
+    <instruction val="Select 'Agents' from the dropdown menu." />
+    <ui_action val="//a[contains(text(), 'Agents')]" />
   </step>
   <step step_num="4">
-    <instruction val="Click 'Update' to create the user record. An email will be sent to the new user to complete their setup and create a password."/>
-    <ui_action val="//button[contains(text(), 'Update')]"/>
-  </step>
-</task>
-<task name="Set Agency Commission Rules">
-  <step step_num="1">
-    <instruction val="Hover over your name in the upper-right corner and select 'Agency Profile'. Admin access is required."/>
-    <ui_action val="//a[contains(text(), 'Agency Profile')]"/>
-  </step>
-  <step step_num="2">
-    <instruction val="In the top navigation bar of the Agency Profile screen, click 'Commission Rules'."/>
-    <ui_action val="//a[contains(text(), 'Commission Rules')]"/>
-    <instruction val="Select 'Agency Commission Rules' from the options."/>
-    <ui_action val="//a[contains(text(), 'Agency Commission Rules')]"/>
-  </step>
-  <step step_num="3">
-    <instruction val="Click 'Add New' to create a new commission rule."/>
-    <ui_action val="//a[contains(text(), 'Add New')]"/>
-  </step>
-  <step step_num="4">
-    <instruction val="Configure the rule by selecting the applicable Carriers, MGAs, Line of Business, and effective date range."/>
-    <instruction val="Enter the commission percentages for New Business and Renewal."/>
-    <instruction val="If your agency splits commissions with an aggregator or cluster, use the 'Corporate Commission Info' fields to calculate your agency's retained commission."/>
+    <instruction val="Click the 'Add New' button at the top of the Agents/Users list." />
+    <ui_action val="//a[contains(text(), 'Add New')]" />
   </step>
   <step step_num="5">
-    <instruction val="Click 'Save' to activate the rule. Note: If multiple rules could apply to a transaction, the system will use the most specific match."/>
-    <ui_action val="//button[contains(text(), 'Save')]"/>
+    <instruction val="Enter the user's information, including First Name, Last Name, and Email Address. The email will be their login username." />
+  </step>
+  <step step_num="6">
+    <instruction val="Set the appropriate permissions for the user's role using the checkboxes." />
+  </step>
+  <step step_num="7">
+    <instruction val="Click 'Update' to create the user record. An email will be sent to the new user to complete their setup." />
+    <ui_action val="//button[contains(text(), 'Update')]" />
   </step>
 </task>
-<task name="Add a New Prospect or Insured">
+<task name="Agency Commission Rules">
   <step step_num="1">
-    <instruction val="Ask: Are you adding a new prospect/lead or an existing client?"/>
-    <instruction val="In the upper-left navigation, click the '+' icon."/>
-    <ui_action val="//a[contains(@class, 'add-new')]"/>
-    <instruction val="Select 'Prospect/Leads' or 'Insured' from the dropdown."/>
-    <ui_action val="//a[contains(text(), 'Prospect/Leads')]"/>
+    <instruction val="Hover over your name in the upper-right corner of the screen." />
+    <ui_action val="//div[contains(@class, 'user-name') or contains(@class, 'agent-name')]" />
   </step>
   <step step_num="2">
-    <instruction val="Before entering details, use the search bar at the top of the screen to check if the record already exists to avoid creating duplicates."/>
-    <ui_action val="id='search-bar'"/>
-    <instruction val="If a match is found, open the existing record. If no match is found, proceed to the next step."/>
+    <instruction val="Click 'Agency Profile' from the dropdown menu." />
+    <ui_action val="//a[contains(text(), 'Agency Profile')]" />
   </step>
   <step step_num="3">
-    <instruction val="Select the record type: 'Personal', 'Commercial', 'Life/Health - Group', 'Life/Health - Individual', or 'Medicare'."/>
-    <instruction val="Enter the required information. For Commercial, this is 'Company Name'. For Personal, this is 'First Name' and 'Last Name'."/>
-    <instruction val="Fill in other recommended fields like Phone Number, Email Address, and Mailing Address."/>
+    <instruction val="In the top navigation bar of the Agency Profile, click 'Commission Rules'." />
+    <ui_action val="//a[contains(text(), 'Commission Rules')]" />
   </step>
   <step step_num="4">
-    <instruction val="Click 'Save' to create the record. You will be redirected to the new record's 'Details' page."/>
-    <ui_action val="//button[contains(text(), 'Save')]"/>
-  </step>
-</task>
-<task name="Add a New Policy">
-  <step step_num="1">
-    <instruction val="First, I need to navigate to the correct insured's profile. Please tell me the name of the insured."/>
-    <instruction val="Use the global search bar at the top of the page to find the insured. Click their name in the search results to open their 'Details' page."/>
-    <ui_action val="id='global-search'"/>
-  </step>
-  <step step_num="2">
-    <instruction val="On the insured's 'Details' page, scroll down to the 'Policies' section."/>
-    <instruction val="Click 'Add New' to open the policy entry screen."/>
-    <ui_action val="//div[@id='policies-section']//a[contains(text(), 'Add New')]"/>
-  </step>
-  <step step_num="3">
-    <instruction val="Enter the policy information, including Policy Number, Effective Date, Business Type, Carrier, MGA (if applicable), and Line of Business."/>
-    <instruction val="Select the correct 'Billing Type' (e.g., Direct Bill, Agency Bill). This is critical for correct accounting."/>
-    <instruction val="Enter the premium amount and any breakdown of fees or taxes."/>
-  </step>
-  <step step_num="4">
-    <instruction val="Scroll down and click 'Save Changes' to store the policy record."/>
-    <ui_action val="//button[contains(text(), 'Save Changes')]"/>
+    <instruction val="Select 'Agency Commission Rules'." />
+    <ui_action val="//a[contains(text(), 'Agency Commission Rules')]" />
   </step>
   <step step_num="5">
-    <instruction val="Ask: Are you ready to set up billing and commission tracking for this policy?"/>
-    <instruction val="If yes: Navigate to the 'Billing' tab for the policy you just created."/>
-    <ui_action val="//a[contains(text(), 'Billing')]"/>
-    <instruction val="Enter the premium, fees, and taxes, then click 'Generate Transaction'. This will calculate commissions, receivables, and payables."/>
-    <ui_action val="//button[contains(text(), 'Generate Transaction')]"/>
+    <instruction val="Click 'Add New' to create a new rule." />
+    <ui_action val="//a[contains(text(), 'Add New')]" />
+  </step>
+  <step step_num="6">
+    <instruction val="Fill in the rule details, such as Carriers, MGAs, Line of Business, and the commission percentages for New Business and Renewal." />
+    <instruction val="Use the 'Corporate Commission Info' fields if your agency splits commissions with an aggregator." />
+  </step>
+  <step step_num="7">
+    <instruction val="Click 'Save' to activate the rule. Note that the most specific rule will be applied if multiple rules match a transaction." />
+    <ui_action val="//button[contains(text(), 'Save')]" />
+  </step>
+</task>
+<task name="Agent Commission Rules">
+  <step step_num="1">
+    <instruction val="Hover over your name in the upper-right corner of the screen." />
+    <ui_action val="//div[contains(@class, 'user-name') or contains(@class, 'agent-name')]" />
+  </step>
+  <step step_num="2">
+    <instruction val="Click 'Agency Profile' from the dropdown menu." />
+    <ui_action val="//a[contains(text(), 'Agency Profile')]" />
+  </step>
+  <step step_num="3">
+    <instruction val="In the top navigation bar of the Agency Profile, click 'Commission Rules'." />
+    <ui_action val="//a[contains(text(), 'Commission Rules')]" />
+  </step>
+  <step step_num="4">
+    <instruction val="Select 'Agent Commission Rules'." />
+    <ui_action val="//a[contains(text(), 'Agent Commission Rules')]" />
+  </step>
+  <step step_num="5">
+    <instruction val="Ask: Are you using commission rules from another agent? If yes, select the agent from the 'Use Commission Rules from Another Agent' dropdown and you are done." />
+  </step>
+  <step step_num="6">
+    <instruction val="Click 'Add New' to create a new rule." />
+    <ui_action val="//a[contains(text(), 'Add New')]" />
+  </step>
+  <step step_num="7">
+    <instruction val="Fill in the rule details, specifying Carriers, MGAs, LOB, and Payment Type. 'From Agency Commission' is the recommended payment type." />
+  </step>
+  <step step_num="8">
+    <instruction val="Enter the commission percentages for New Business, Renewal, and Rewrite." />
+  </step>
+  <step step_num="9">
+    <instruction val="Click 'Save' to activate the rule. The system will use the most specific match if multiple rules apply." />
+    <ui_action val="//button[contains(text(), 'Save')]" />
+  </step>
+</task>
+<task name="Add Signatures">
+  <step step_num="1">
+    <instruction val="Navigate to the Signatures tab. You can do this in two ways. Option 1: Click your name in the upper right, select 'Agency Profile', then click the 'Signatures' tab." />
+    <ui_action val="//a[contains(text(), 'Agency Profile')]" />
+    <ui_action val="//a[contains(text(), 'Signatures')]" />
+    <instruction val="Option 2: From the left navigation, go to Miscellaneous > Agency Customization > Signatures." />
+    <ui_action val="//span[contains(text(),'Miscellaneous')]" />
+    <ui_action val="//span[contains(text(),'Agency Customization')]" />
+    <ui_action val="//a[contains(text(), 'Signatures')]" />
+  </step>
+  <step step_num="2">
+    <instruction val="Click 'Add New Signature'." />
+    <ui_action val="//a[contains(text(), 'Add New Signature')]" />
+  </step>
+  <step step_num="3">
+    <instruction val="Ask: Do you want to generate a signature or upload a file?" />
+    <instruction val="If 'Generate': Enter the name and select a font style from the dropdown." />
+    <instruction val="If 'Upload File': Select and upload a PNG or JPG file. A transparent background is recommended." />
+  </step>
+  <step step_num="4">
+    <instruction val="Assign the signature to the correct agent or agency record." />
+  </step>
+  <step step_num="5">
+    <instruction val="Click 'Save'." />
+    <ui_action val="//button[contains(text(), 'Save')]" />
+  </step>
+</task>
+<task name="Create a Carrier">
+  <step step_num="1">
+    <instruction val="Navigate to the Carrier setup screen. You can do this by clicking the '+' icon in the top navigation and selecting 'Carriers', or by going to Contacts > Carriers in the left navigation menu." />
+    <ui_action val="//a[contains(@class, 'add-new-menu')]" />
+    <ui_action val="//a[contains(text(), 'Carriers')]" />
+    <ui_action val="//span[contains(text(),'Contacts')]" />
+    <ui_action val="//span[contains(text(),'Carriers')]" />
+  </step>
+  <step step_num="2">
+    <instruction val="Before adding a new carrier, search for the carrier's name to ensure it doesn't already exist." />
+  </step>
+  <step step_num="3">
+    <instruction val="If the carrier does not exist, click 'Add New'." />
+    <ui_action val="//a[contains(text(), 'Add New')]" />
+  </step>
+  <step step_num="4">
+    <instruction val="Enter the carrier's information, including Name, NAIC number, and default commission percentages." />
+    <instruction val="If this carrier is part of a larger group, you can link it to a Parent Carrier. Ask: Is this a writing company for a parent carrier? If the parent does not exist, you will need to create it first by creating a new carrier with only the parent name." />
+  </step>
+  <step step_num="5">
+    <instruction val="Fill in other relevant details like address, contacts, and business information." />
+  </step>
+  <step step_num="6">
+    <instruction val="Click 'Save' to create the carrier record." />
+    <ui_action val="//button[contains(text(), 'Save')]" />
+  </step>
+</task>
+<task name="Create a MGA">
+  <step step_num="1">
+    <instruction val="Navigate to the MGA setup screen. You can do this by clicking the '+' icon in the top navigation and selecting 'MGAs', or by going to Contacts > MGAs in the left navigation menu." />
+    <ui_action val="//a[contains(@class, 'add-new-menu')]" />
+    <ui_action val="//a[contains(text(), 'MGAs')]" />
+    <ui_action val="//span[contains(text(),'Contacts')]" />
+    <ui_action val="//span[contains(text(),'MGAs')]" />
+  </step>
+  <step step_num="2">
+    <instruction val="Before adding a new MGA, search for the MGA's name to ensure it doesn't already exist." />
+  </step>
+  <step step_num="3">
+    <instruction val="If the MGA does not exist, click 'Add New'." />
+    <ui_action val="//a[contains(text(), 'Add New')]" />
+  </step>
+  <step step_num="4">
+    <instruction val="Enter the MGA's information, such as Name, contact details, and default commission percentages." />
+  </step>
+  <step step_num="5">
+    <instruction val="Click 'Save' to create the MGA record." />
+    <ui_action val="//button[contains(text(), 'Save')]" />
+  </step>
+</task>
+<task name="Create a Commercial or Personal Prospect or Insured">
+  <step step_num="1">
+    <instruction val="Click the '+' icon in the upper-left navigation bar and select 'Prospect/Leads' or 'Insured'." />
+    <ui_action val="//a[contains(@class, 'add-new-menu')]" />
+    <ui_action val="a[onclick*='Prospects/Insert']" />
+  </step>
+  <step step_num="2">
+    <instruction val="IMPORTANT: Before entering details, search for the prospect/insured by name at the top of the screen to avoid creating a duplicate record." />
+  </step>
+  <step step_num="3">
+    <instruction val="If no match is found, select the record type: Personal, Commercial, Life/Health - Group, Life/Health - Individual, or Medicare." />
+  </step>
+  <step step_num="4">
+    <instruction val="Enter the required information. For Commercial, this is 'Company Name'. For Personal, it is 'First Name' and 'Last Name'." />
+    <instruction val="It is highly recommended to also fill in the phone number, email address, and mailing address." />
+  </step>
+  <step step_num="5">
+    <instruction val="Click 'Save' to create the record." />
+    <ui_action val="//button[contains(text(), 'Save')]" />
+  </step>
+</task>
+<task name="Create a policy">
+  <step step_num="1">
+    <instruction val="First, locate the insured's profile using the global search bar or by navigating to the 'Insureds' list from the left menu." />
+    <ui_action val="#global-search" />
+    <ui_action val="//span[contains(text(),'Insureds')]" />
+  </step>
+  <step step_num="2">
+    <instruction val="Click on the insured's name to open their Details page." />
+  </step>
+  <step step_num="3">
+    <instruction val="Scroll down to the 'Policies' section and click 'Add New'." />
+    <ui_action val="a[onclick*='Policies/Insert']" />
+  </step>
+  <step step_num="4">
+    <instruction val="Enter all the policy information, including Policy Number, Effective Date, Business Type, Carrier, Line of Business, and Billing Type." />
+  </step>
+  <step step_num="5">
+    <instruction val="Enter the premium amount and breakdown any applicable fees or taxes." />
+  </step>
+  <step step_num="6">
+    <instruction val="Click 'Save Changes' to store the policy record." />
+    <ui_action val="//button[contains(text(), 'Save Changes')]" />
+  </step>
+  <step step_num="7">
+    <instruction val="Ask: Are you ready to set up billing and commission tracking for this policy? If yes, navigate to the 'Billing' tab and click 'Generate Transaction'." />
+    <ui_action val="//a[contains(text(), 'Billing')]" />
+    <ui_action val="//button[contains(text(), 'Generate Transaction')]" />
+  </step>
+</task>
+<task name="Create a certificate holder">
+  <step step_num="1">
+    <instruction val="Navigate to the Insured’s profile using the dynamic search." />
+    <ui_action val="#global-search" />
+  </step>
+  <step step_num="2">
+    <instruction val="Click 'Send Certificate' in the upper-right corner of the insured’s profile." />
+    <ui_action val="//a[contains(text(), 'Send Certificate')]" />
+  </step>
+  <step step_num="3">
+    <instruction val="Select the appropriate master certificate template from the dropdown." />
+  </step>
+  <step step_num="4">
+    <instruction val="In the Certificate Holder dropdown, search for an existing holder. If the holder is not found, click 'Add New'." />
+    <ui_action val="//a[contains(text(), 'Add New')]" />
+  </step>
+  <step step_num="5">
+    <instruction val="If adding a new holder, enter their Name, Address, and optionally their email and a description." />
+  </step>
+  <step step_num="6">
+    <instruction val="Click 'Add'. The holder is now saved to your agency's list and attached to the certificate being issued." />
+    <ui_action val="//button[contains(text(), 'Add')]" />
   </step>
 </task>
 <task name="Create a Master Certificate">
   <step step_num="1">
-    <instruction val="First, I need to navigate to the correct insured's profile. Please tell me the name of the insured."/>
-    <instruction val="Use the global search bar to find the insured and click on their profile."/>
-    <ui_action val="id='global-search'"/>
+    <instruction val="Open the insured's profile using the global search." />
+    <ui_action val="#global-search" />
   </step>
   <step step_num="2">
-    <instruction val="Click on the 'Documents' tab within the insured's profile."/>
-    <ui_action val="//a[contains(text(), 'Documents')]"/>
-    <instruction val="In the navigation menu that appears, select 'Certificates Master'."/>
-    <ui_action val="//a[contains(text(), 'Certificates Master')]"/>
+    <instruction val="Click on the 'Documents' tab." />
+    <ui_action val="//a[contains(text(), 'Documents')]" />
   </step>
   <step step_num="3">
-    <instruction val="Click the 'Add New' button."/>
-    <ui_action val="//a[contains(text(), 'Add New')]"/>
+    <instruction val="In the navigation menu within the Documents area, select 'Certificates Master'." />
+    <ui_action val="//a[contains(text(), 'Certificates Master')]" />
   </step>
   <step step_num="4">
-    <instruction val="Select a certificate template. For liability, this is typically 'ACORD 25 - Certificate of Liability Insurance'."/>
-    <ui_action val="id='template-dropdown'"/>
-    <instruction val="Enter a descriptive name for the certificate, such as '2025 Master Certificate'."/>
+    <instruction val="Click the 'Add New' button." />
+    <ui_action val="//a[contains(text(), 'Add New')]" />
   </step>
   <step step_num="5">
-    <instruction val="Check the boxes for all policies that should be linked to this master certificate. The coverages from these policies will auto-populate on the certificate."/>
-    <instruction val="Review the populated coverages for accuracy and select the desired signature to appear on the certificate."/>
+    <instruction val="Select a certificate template, typically 'ACORD 25 – Certificate of Liability Insurance'." />
   </step>
   <step step_num="6">
-    <instruction val="Click 'Save' to finalize the Master Certificate."/>
-    <ui_action val="//button[contains(text(), 'Save')]"/>
+    <instruction val="Enter a descriptive name for the certificate, like '2025 Master Certificate'." />
+  </step>
+  <step step_num="7">
+    <instruction val="Check the boxes for all policies that should be linked to this master certificate." />
+  </step>
+  <step step_num="8">
+    <instruction val="Review the coverages and select the appropriate signature from the dropdown." />
+  </step>
+  <step step_num="9">
+    <instruction val="Click 'Save' to finalize the Master Certificate." />
+    <ui_action val="//button[contains(text(), 'Save')]" />
   </step>
 </task>
-<task name="Add a Certificate Holder and Send Certificate">
+<task name="Add a Holder to a Master Certificate">
   <step step_num="1">
-    <instruction val="Ask: Have you already created a Master Certificate for this insured?"/>
-    <instruction val="If no: I can guide you through creating one first."/>
-    <instruction val="If yes: I need to navigate to the correct insured's profile. Please tell me the name of the insured."/>
-    <instruction val="Use the global search bar to find the insured and click on their profile."/>
-    <ui_action val="id='global-search'"/>
+    <instruction val="Go to the insured's profile page." />
   </step>
   <step step_num="2">
-    <instruction val="In the upper-right corner of the insured's profile, click 'Send Certificate'."/>
-    <ui_action val="//button[contains(text(), 'Send Certificate')]"/>
+    <instruction val="Click the 'Send Certificate' button in the upper-right corner." />
+    <ui_action val="//a[contains(text(), 'Send Certificate')]" />
   </step>
   <step step_num="3">
-    <instruction val="Select the appropriate Master Certificate from the list."/>
-    <instruction val="Now, let's add the holder. Ask: Is the certificate holder already in the system?"/>
-    <instruction val="If yes: Select them from the 'Certificate Holder' dropdown menu."/>
-    <ui_action val="id='certificate-holder-dropdown'"/>
-    <instruction val="If no: Click 'Add New' next to the dropdown."/>
-    <ui_action val="//a[contains(text(), 'Add New')]"/>
-    <instruction val="Enter the holder's Name, Address, and Email, then click 'Add'. The holder will be saved for future use."/>
+    <instruction val="Select the Master Certificate you want to use." />
   </step>
   <step step_num="4">
-    <instruction val="Important: Does this holder also need to be an Additional Insured, Loss Payee, or Mortgagee on the policy itself?"/>
-    <instruction val="If yes: This process is incorrect. We must stop and add them via the 'Additional Interests' tab instead. Let me know if you'd like to do that."/>
-    <instruction val="If no: Proceed to the next step."/>
+    <instruction val="Choose an existing holder from the dropdown or click 'Add New Certificate Holder' to create a new one." />
+    <ui_action val="//a[contains(text(), 'Add New Certificate Holder')]" />
   </step>
   <step step_num="5">
-    <instruction val="Fill out any remaining fields, such as the 'Description of Operations'."/>
-    <instruction val="Click 'Send Certificate' to email the COI or 'Download' to save it as a PDF."/>
-    <ui_action val="//button[contains(text(), 'Send Certificate')]"/>
+    <instruction val="Fill out any additional certificate details, like 'Description of Operations'." />
   </step>
-</task>
-<task name="Set Up a Carrier">
-  <step step_num="1">
-    <instruction val="Click the '+' icon in the upper-left navigation menu and select 'Carriers'. Alternatively, navigate to 'Contacts' &gt; 'Carriers' in the left navigation menu."/>
-    <ui_action val="//a[contains(text(), 'Carriers')]"/>
-  </step>
-  <step step_num="2">
-    <instruction val="Before adding a new carrier, use the search bar to ensure it doesn't already exist."/>
-    <ui_action val="id='search-carriers'"/>
-    <instruction val="If no existing record is found, click 'Add New'."/>
-    <ui_action val="//a[contains(text(), 'Add New')]"/>
-  </step>
-  <step step_num="3">
-    <instruction val="Fill in the carrier's general information, including Name, NAIC number, and default commission percentages."/>
-    <instruction val="Enter the carrier's address, contact information, and agency portal details."/>
-  </step>
-  <step step_num="4">
-    <instruction val="In the 'Lines of Business' section, select all applicable lines your agency writes with this carrier."/>
-    <instruction val="Configure any other default settings as needed."/>
-  </step>
-  <step step_num="5">
-    <instruction val="Click 'Save' to create the carrier record."/>
-    <ui_action val="//button[contains(text(), 'Save')]"/>
+  <step step_num="6">
+    <instruction val="Click 'Send Certificate' or 'Download'. The holder will now be automatically linked to that Master Certificate for this insured." />
+    <ui_action val="//button[contains(text(), 'Send Certificate')]" />
+    <ui_action val="//button[contains(text(), 'Download')]" />
   </step>
 </task>
 ```
