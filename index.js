@@ -5,8 +5,8 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 import fs from 'fs';
 
-const guideFile = 'inputGuide.txt';
-const videoFile = '';
+const guideFile = '';
+const videoFile = 'https://youtu.be/lZ3jFHlmWzQ';
 // const htmlFile = 'websiteHTML.html';
 
 const ai = new GoogleGenAI({
@@ -41,6 +41,7 @@ TASK_RECORDER_PROMPT += "into detailed instructions in the form of structured HT
 TASK_RECORDER_PROMPT += "\n\n"; 
 TASK_RECORDER_PROMPT += "Your output must be only the <task> XML block with steps and nothing else. However, you are free to include multiple <task> blocks if a video  includes multiple diffrent tasks. Do not include explanations, markdown, notes, or reasoning.\n";
 TASK_RECORDER_PROMPT += "Never assume the url that a link will take you to. Always try to identify elements based on the text they contain instead of classes or element type unless necessary. \n";
+TASK_RECORDER_PROMPT += "Remember that you are guiding the user, so explain the goal before taking them through the actions. Be personable and excited to help.\n";
 
 if (inputtedGuide) {
   TASK_RECORDER_PROMPT += `\n\nHere is your text-based guide:\n${guide}`;
@@ -145,7 +146,9 @@ function buildGuideAISystemPrompt(html) {
     "Always ask before navigating.\n" +
     "Only highlight after user confirmation.\n" +
     "One step, one sentence, never truncate.\n" +
-    "Never repeat yourself and don't stop in the middle.";
+    "Never repeat yourself and don't stop in the middle.\n" +
+    "Remember that you are guiding the user, so explain the goal before taking them through the actions.\n" +
+    "Be personable and excited to help.";
   return `${header}${html}${footer}`;
 }
 
