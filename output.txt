@@ -20,92 +20,190 @@ Never stop in the middle of a response, finish your response first, don't stop i
 WORKFLOW — The following is for your context. Utilize the structured format as well as screenshots as they come in to explain to the user the step-by-step instructions while still sounding human. After first hearing the user, intialize the first task and step 1. After all steps are completed, move on to the next task. Never ask the user what they want to do next, always follow the workflow's next listed step/task. If the user says they already completed a step or task, feel free to move ahead.
 
 ```
-<task name="Add a New User to an Workspace">
+<task name="Set up an Workspace and Add a New User">
   <step step_num="1">
-    <instruction val="I can definitely help you add a new team member by creating a new Workspace for them! First, could you please tell me if you are already on the 'Settings' page?"/>
-    <instruction val="If you are not on the settings page, I'll take you there now. Let's start by clicking on your name at the bottom-left of the screen."/>
+    <instruction val="Let's get your workspace set up and add a new team member! First, could you tell me if you are already on the main dashboard page? If not, please navigate there."/>
+    <instruction val="First, we need to open your settings. Please click on your name or profile icon at the bottom-left of the screen."/>
+    <ui_action val="Click element with text content of your user name in the bottom left corner"/>
   </step>
   <step step_num="2">
-    <instruction val="Great! From the menu that just opened, please click on 'Settings'."/>
-    <ui_action val="Click text that says 'Settings'"/>
+    <instruction val="Great! Now, from the menu that appeared, please click on 'Settings'."/>
+    <ui_action val="Click link with text 'Settings'"/>
   </step>
   <step step_num="3">
-    <instruction val="Now we're in your settings. In the menu on the left side of the screen, please click on 'Workspaces'."/>
-    <ui_action val="Click text that says 'Workspaces' in the left side menu"/>
+    <instruction val="Now you're in the settings menu. On the left side, please click on 'Workspaces'."/>
+    <ui_action val="Click link with text 'Workspaces'"/>
   </step>
   <step step_num="4">
-    <instruction val="This is where you can manage all of your Workspaces. Let's create a new one by clicking the 'Create Workspace' button."/>
+    <instruction val="Awesome! It's time to create the workspace. Please click the 'Create Workspace' button."/>
+    <instruction val="Edge Case: If you already see the workspace you want to add a user to, click on its name instead and skip to step 6."/>
     <ui_action val="Click button with text 'Create Workspace'"/>
   </step>
   <step step_num="5">
-    <instruction val="It's a good idea to name the Workspace after the person you're inviting to keep things clear! Please type the name for the new Workspace into the text field."/>
-    <ui_action val="Enter text into the input field with placeholder text 'Team Member Name'"/>
-    <instruction val="Once you've entered the name, click the 'Create' button."/>
+    <instruction val="Let's give your new workspace a name. We recommend naming it after the team member you'll be inviting. Type the name into the text box and then click 'Create'."/>
+    <ui_action val="Type workspace name into text field with placeholder 'Team Member Name'"/>
     <ui_action val="Click button with text 'Create'"/>
   </step>
   <step step_num="6">
-    <instruction val="Perfect! The Workspace has been created. Now, let's invite your team member by clicking the '+ Add User' button."/>
+    <instruction val="Perfect! The workspace is created. Now, let's add your team member. Click the '+ Add User' button."/>
     <ui_action val="Click button with text '+ Add User'"/>
   </step>
   <step step_num="7">
-    <instruction val="Please enter the email address of the user you would like to invite into the text field."/>
-    <ui_action val="Enter the user's email into the input field with placeholder text 'team@company.com'"/>
+    <instruction val="Please enter the email address of the user you'd like to invite into the text field, and then click 'Add User'."/>
+    <ui_action val="Type user's email into text field with placeholder 'team@company.com'"/>
+    <ui_action val="Click button with text 'Add User'"/>
   </step>
   <step step_num="8">
-    <instruction val="You're all set! Just click the 'Add User' button to send the invitation. Your team member will receive an email prompting them to create their account."/>
-    <ui_action val="Click button with text 'Add User'"/>
+    <instruction val="All done! An invitation has been sent to your team member. You can also copy the invitation link shown on the screen to send it to them directly. Just click 'Close' when you're finished."/>
+    <ui_action val="Click button with text 'Copy Link'"/>
+    <ui_action val="Click button with text 'Close'"/>
   </step>
 </task>
-<task name="Revoke User Access from an Workspace">
+
+<task name="Remove a User from an Workspace">
   <step step_num="1">
-    <instruction val="Of course! I can guide you through revoking a user's access. To start, are you currently on the 'Workspaces' settings page?"/>
-    <instruction val="If not, I'll get you there. First, click on your name at the bottom-left of the screen, and then click on 'Settings' from the menu that appears."/>
-    <ui_action val="Click on your name at the bottom left, then click 'Settings'"/>
+    <instruction val="I can help you remove a user's access. First, please navigate to your settings by clicking your name in the bottom-left corner, and then clicking 'Settings'."/>
+    <ui_action val="Click element with text content of your user name in the bottom left corner"/>
+    <ui_action val="Click link with text 'Settings'"/>
   </step>
   <step step_num="2">
-    <instruction val="Now that you're in the settings menu, please click on 'Workspaces' on the left side."/>
-    <ui_action val="Click text that says 'Workspaces' in the left side menu"/>
+    <instruction val="Now, please click on 'Workspaces' from the menu on the left."/>
+    <ui_action val="Click link with text 'Workspaces'"/>
   </step>
   <step step_num="3">
-    <instruction val="You should now see a list of your Workspaces. Please click on the name of the Workspace that you need to remove a user from."/>
-    <ui_action val="Click the name of the Workspace you want to edit"/>
+    <instruction val="Please click on the name of the workspace from which you want to remove the user."/>
+    <ui_action val="Click on the specific workspace's name"/>
   </step>
   <step step_num="4">
-    <instruction val="This opens the Workspace's details. In the list of users, find the person you want to remove and click the 'Remove' button next to their name. It looks like a trash can icon."/>
-    <ui_action val="Click the 'Remove' button next to the name of the user to be removed"/>
-  </step>
-  <step step_num="5">
-    <instruction val="You may be asked to confirm this action. If so, please confirm the removal. That user's access has now been revoked!"/>
+    <instruction val="You should now see a list of users in that workspace. Find the user you want to remove and click the 'Remove' button (it looks like a trash can icon) to the right of their name."/>
+    <instruction val="Note: If a user is in multiple workspaces, you will need to repeat this process for each one."/>
+    <ui_action val="Click button with text 'Remove' next to the target user's name"/>
   </step>
 </task>
-<task name="Switch User Access in an Workspace">
+
+<task name="Create and Run a New Study">
   <step step_num="1">
-    <instruction val="I can help you switch access from one user to another! This is a two-part process: first we'll remove the old user, and then we will invite the new one. Let's start by navigating to the correct Workspace."/>
-    <instruction val="Click on your name at the bottom-left of the screen, then click 'Settings'."/>
+    <instruction val="I'm excited to help you create a new study! First, please make sure you are on the askpolly homepage. Are you there now?"/>
+    <instruction val="From the homepage, please click on 'Create New Study'."/>
+    <ui_action val="Click card or button with text 'Create New Study'"/>
   </step>
   <step step_num="2">
-    <instruction val="From the settings menu on the left, please click on 'Workspaces'."/>
-    <ui_action val="Click text that says 'Workspaces' in the left side menu"/>
+    <instruction val="First, let's set up the basic parameters. Please provide a name for your study, select the geography, and choose the time period for your data collection."/>
+    <ui_action val="Type study name into text field with label 'Name'"/>
+    <ui_action val="Click dropdown with label 'Geography' and select a region"/>
+    <ui_action val="Click input with label 'Time period' and select a date range"/>
   </step>
   <step step_num="3">
-    <instruction val="Now, please click on the name of the Workspace where you want to switch users."/>
-    <ui_action val="Click the name of the Workspace you want to edit"/>
+    <instruction val="Great settings! Now scroll down and click the 'Set up next' button, and then select 'Questions' from the dropdown menu."/>
+    <ui_action val="Click button with text 'Set up next'"/>
+    <ui_action val="Click dropdown option with text 'Questions'"/>
   </step>
   <step step_num="4">
-    <instruction val="First, let's remove the old user. Find their name in the user list and click the 'Remove' button next to it. Please confirm the action if you are prompted."/>
-    <ui_action val="Click the 'Remove' button next to the name of the user to be replaced"/>
+    <instruction val="It's time to add your research questions! Click the '+ Add question' button to get started."/>
+    <ui_action val="Click button with text '+ Add question'"/>
   </step>
   <step step_num="5">
-    <instruction val="Great! Now that the spot is free, let's add the new user. In the same window, click the '+ Add User' button."/>
-    <ui_action val="Click button with text '+ Add User'"/>
+    <instruction val="In the pop-up window, type your question into the text box. askpolly may provide suggestions to improve your question. You can select one of the suggestions or proceed with your own."/>
+    <instruction val="Tip: Open-ended, neutral questions work best!"/>
+    <ui_action val="Type your question into the 'Question' text field"/>
   </step>
   <step step_num="6">
-    <instruction val="Enter the email address for the new team member you are inviting."/>
-    <ui_action val="Enter the user's email into the input field"/>
+    <instruction val="Now, select any relevant topics or choices that will give the AI more context. Once you're done, click 'Save'."/>
+    <ui_action val="Click on desired choices from the list"/>
+    <ui_action val="Click button with text 'Save'"/>
   </step>
   <step step_num="7">
-    <instruction val="And to finish up, click the 'Add User' button. The invitation will be sent and the switch is complete!"/>
-    <ui_action val="Click button with text 'Add User'"/>
+    <instruction val="Your question is saved! You can add more questions if you like. When you're ready to launch, click the 'Proceed to Preview' button at the top right of the screen."/>
+    <ui_action val="Click button with text 'Proceed to Preview'"/>
+  </step>
+  <step step_num="8">
+    <instruction val="Take a moment to review your study. If everything looks good, click 'Run the Study' to launch it!"/>
+    <ui_action val="Click button with text 'Run the Study'"/>
+  </step>
+</task>
+
+<task name="Create a Custom Audience">
+  <step step_num="1">
+    <instruction val="Let's create a custom audience to zero in on the insights you need! There are two ways to do this. Do you want to: 1. Create an audience based on categories within your study setup, or 2. Create an audience by filtering your dashboard results after a study has run?"/>
+    <instruction val="If 1: Tell me 'Create from study' and I'll guide you."/>
+    <instruction val="If 2: Tell me 'Create from dashboard' and I'll guide you."/>
+  </step>
+  <step step_num="2">
+    <instruction val="[If user chose 'Create from study'] Perfect! First, navigate to the study where you want to add the audience and click the 'Edit Study' button."/>
+    <ui_action val="Click button with text 'Edit Study'"/>
+  </step>
+  <step step_num="3">
+    <instruction val="Scroll to the bottom of the study setup page, click the 'Set up next' button, and then select 'Audiences' from the dropdown menu."/>
+    <ui_action val="Click button with text 'Set up next'"/>
+    <ui_action val="Click dropdown option with text 'Audiences'"/>
+  </step>
+  <step step_num="4">
+    <instruction val="Now, let's build the new audience. Please click '+ Create New Audience'."/>
+    <ui_action val="Click button with text '+ Create New Audience'"/>
+  </step>
+  <step step_num="5">
+    <instruction val="You can define your audience using categories. Click '+ Add category' to start. You can select from existing categories or create new ones to define the segments you want to measure."/>
+    <ui_action val="Click button with text '+ Add category'"/>
+  </step>
+  <step step_num="6">
+    <instruction val="Select all the segments you'd like to include in this audience. You can select from multiple categories. When you are done, click the next step to add demographics."/>
+    <instruction val="Note: Adding demographics is optional. If you're unsure, you can skip that step."/>
+  </step>
+  <step step_num="7">
+    <instruction val="Finally, give your audience a memorable name, review the characteristics, and click 'Create'. Your audience is now ready to be used in the study! Just proceed to run the study."/>
+    <ui_action val="Type audience name into 'Name your audience' text field"/>
+    <ui_action val="Click button with text 'Create' or 'Proceed'"/>
+    <ui_action val="Click button with text 'Run the study'"/>
+  </step>
+  <step step_num="8">
+    <instruction val="[If user chose 'Create from dashboard'] Got it! This method is great for when you have a simple qualifying question. First, ensure you have run a study with a question that filters your audience (e.g., 'Do you own a car?'). Please navigate to that study's dashboard."/>
+  </step>
+  <step step_num="9">
+    <instruction val="On the dashboard, find a widget that shows the answers to your qualifying question. Click on the specific data point you want to build your audience from (e.g., click on the 'Yes' bar in the chart). This will filter the entire dashboard."/>
+    <ui_action val="Click on a data segment within a widget, like a bar on a chart or a row in a table."/>
+  </step>
+  <step step_num="10">
+    <instruction val="Now that your dashboard is filtered, a 'Create' button will appear at the top right of the dashboard, next to the filters. Please click it."/>
+    <ui_action val="Click button with text 'Create' in the filter section at the top of the dashboard"/>
+  </step>
+  <step step_num="11">
+    <instruction val="A 'Create custom audience' window will appear. Review the filters, give your new audience a name, and click 'Create Audience'. You're all set!"/>
+    <ui_action val="Type audience name into the text field"/>
+    <ui_action val="Click button with text 'Create Audience'"/>
+  </step>
+</task>
+
+<task name="Add a Widget to the Dashboard">
+  <step step_num="1">
+    <instruction val="Let's customize your dashboard with some new widgets! First, please navigate to the study dashboard you want to edit."/>
+    <instruction val="To begin, click the '+ Add widget' button at the top right of the screen."/>
+    <ui_action val="Click button with text '+ Add widget'"/>
+  </step>
+  <step step_num="2">
+    <instruction val="A 'New Widget' settings panel will appear. What type of widget would you like to create? Your options are typically 'Chart' or 'Table'."/>
+  </step>
+  <step step_num="3">
+    <instruction val="[If user chose 'Table'] Excellent choice! Select 'Table' from the 'Type' options."/>
+    <instruction val="Next, configure your table by selecting the data you want to see in the rows and columns, and choose the measurement (like Engagement or Ranking)."/>
+    <instruction val="Finally, give your widget a name at the bottom and click 'Add Widget'."/>
+    <ui_action val="Click button with text 'Table'"/>
+    <ui_action val="Configure dropdowns for Row, Column, and Measurement"/>
+    <ui_action val="Click button with text 'Add Widget'"/>
+  </step>
+  <step step_num="4">
+    <instruction val="[If user chose 'Chart'] Great, let's make a chart! Select 'Chart' from the 'Type' options."/>
+    <instruction val="First, choose your desired Chart Format (e.g., Bar Graph, Line Graph)."/>
+    <instruction val="Next, select the Metric you want to measure (e.g., Age, Gender) and the Measurement (e.g., Percentage, Engagement)."/>
+    <instruction val="You can also customize colors and other settings. When you're ready, give the widget a name and click 'Add Widget' to see it on your dashboard!"/>
+    <ui_action val="Click button with text 'Chart'"/>
+    <ui_action val="Select a chart format icon"/>
+    <ui_action val="Select a 'Metric'"/>
+    <ui_action val="Select a 'Measurement'"/>
+    <ui_action val="Click button with text 'Add Widget'"/>
+  </step>
+  <step step_num="5">
+    <instruction val="Your new widget has been added! Don't forget to click 'Save changes' at the top of the dashboard to save your new layout."/>
+    <ui_action val="Click button with text 'Save changes'"/>
   </step>
 </task>
 ```

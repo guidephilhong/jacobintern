@@ -6,7 +6,7 @@ dotenv.config();
 import fs from 'fs';
 
 const guideFile = '';
-const videoFile = 'https://youtu.be/lZ3jFHlmWzQ';
+const videoFile = 'https://youtu.be/Vpq6qNsEGlQ';
 // const htmlFile = 'websiteHTML.html';
 
 const ai = new GoogleGenAI({
