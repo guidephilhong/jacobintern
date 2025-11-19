@@ -1,47 +1,8 @@
-Some helpful information to know:
-Account and Billing Management
-Updating Your Payment Method: To ensure uninterrupted service, you can update your payment information directly within your Momentum AMS account.[1]
-Step 1: Log in and click on your agent or agency name in the top right corner.
-Step 2: Select "Subscription & Payments" from the dropdown menu.[1]
-Step 3: Click the "Change Credit Card Details" link.[1]
-Step 4: Enter your new credit card number, expiration date, CVV, cardholder name, country/region, zip code, and phone number.[1]
-Step 5: Review the information for accuracy and click "Save Card." A confirmation message will appear upon successful update.
-Switching Trial Subscriptions: During the 30-day free trial, you can switch between different subscription plans to find the best fit for your agency.
-Step 1: Log in and navigate to "Subscription & Payments" by hovering over your name in the top right.
-Step 2: Review the available plans and select a new one from the dropdown menu.
-Step 3: Click "Modify Subscription" to initiate the change. Although a credit card is on file, you will not be charged during the trial.
-Step 4: Confirm the switch. Your subscription will automatically convert to the chosen plan at the end of the trial unless you unsubscribe.
-Important Note: IVANS Carrier Downloads are not available during the free trial. To activate this feature, you must convert to a paid subscription early by contacting the Billing Department.
-Agency PIN Code: For enhanced security, Momentum AMS uses an Agency PIN Code for identity verification when you contact support or perform sensitive actions. This PIN is located in your Agency Profile and can be viewed by users with the appropriate permissions by clicking "Actions > View PIN."
-Navigation and Workflow Tools
-Left Navigation Menu: This is the main menu that lists all sections and tools within Momentum AMS. You can customize it by clicking "Configure Menu" at the top to remove unused items, create custom parent trees, and add external links.
-Dynamic Search: The fastest way to find records such as prospects, insureds, and policies is by using the Dynamic Search bar located at the top of the left navigation menu. Simply type at least three letters of a name, policy number, or address, and matching results will appear in a dropdown list.
-Navigation Palette: This tool allows you to create a personalized quick-access menu. You can open it by:
-Clicking the palette icon near the top of the screen.
-Typing "Menu" in the global search bar.
-Using the keyboard shortcut CTRL+M.
-Use the "Configure" button to add Momentum menu items, reports, and external links, and organize them into custom sections using drag-and-drop.
-Actions Menu: This menu provides quick access to tasks directly from list views or detail pages. The available options are context-specific and change depending on the type of record. For example, the Insured Actions Menu includes options like "Send Files," "Take Payment," and "Create User," while the Policy Actions Menu has options such as "Renew Policy," "Cancel Policy," and "Convert to Quote."
-Pipelines: These are visual, kanban-style boards for tracking workflows. You can access them from the "PIPELINES" section in the Left Navigation Menu. Available pipelines include overviews for renewals, service requests, endorsements, tasks, and opportunities.
-Documents Tab: Located on record detail pages (like Insureds and Policies), this tab organizes all related files and financial records into several sub-tabs:
-Files: For general documents like applications and ID cards.
-eSign Docs: Stores documents from integrated e-signature platforms.
-Forms: For ACORD applications and other agency forms.
-Invoices / Receipts: Manages client invoices and payments.
-Issue Payment: Records outgoing payments to carriers or MGAs.
-Other Transactions: For miscellaneous financial entries.
-Working with Multiple Tabs: To work on multiple records simultaneously without losing your place, you can open records in new browser tabs. From a list view, right-click a record and select "Open Link in New Tab." This is useful for comparing insureds, updating multiple policies, or cross-referencing information.
+Workflow 1:
+https://momentumamp.freshdesk.com/support/solutions/articles/156000373459-billing-and-payment-management
 
-Workflow Guide for you to generate:
-1. Agency Setup https://momentumamp.freshdesk.com/support/solutions/articles/156000373341
-2. Add Agency Users https://momentumamp.freshdesk.com/support/solutions/articles/156000373342
-3. Agency Comission Rules https://momentumamp.freshdesk.com/support/solutions/articles/156000373343
-4. Agent Comission Rules https://momentumamp.freshdesk.com/support/solutions/articles/156000373344
-5. Add Signatures https://momentumamp.freshdesk.com/support/solutions/articles/156000373410
-6. Create a Carrier https://momentumamp.freshdesk.com/support/solutions/articles/156000373345, https://support.momentumamp.com/support/solutions/articles/156000373395-how-to-set-up-parent-carriers-in-momentum-ams
-7. Create a MGA https://momentumamp.freshdesk.com/support/solutions/articles/156000373346
-8. Create a Commerical or Personal Prospect or Insured https://momentumamp.freshdesk.com/support/solutions/articles/156000373005
-9. Create a policy https://momentumamp.freshdesk.com/support/solutions/articles/156000373006
-10. Create a certificate holder https://momentumamp.freshdesk.com/support/solutions/articles/156000373084
-11. Create a Master Certificate https://momentumamp.freshdesk.com/support/solutions/articles/156000373041-how-to-create-a-master-certificate-in-momentum-ams
-12. Add a Holder to a Master Certificate https://momentumamp.freshdesk.com/support/solutions/articles/156000373088-how-to-add-a-holder-to-a-master-certificate
+Workflow 2:
+https://momentumamp.freshdesk.com/support/solutions/articles/156000373311-endorsement-management
+
+Workflow 3:
+https://momentumamp.freshdesk.com/support/solutions/articles/156000375137-carrier-downloads-insured-and-policy-merging-options-explained
